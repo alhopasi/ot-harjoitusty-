@@ -1,0 +1,21 @@
+commit c0215c2cdaa231033dd9f013b95f57205a2554b8
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 11 10:34:07 2019 +0200
+
+    tehty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 953187ddc45f004f5045589b35081f6635de6b4e
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 11 10:32:18 2019 +0200
+
+    aloitetaan tästä
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
