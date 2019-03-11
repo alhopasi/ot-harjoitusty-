@@ -19,3 +19,4 @@ Date:   Mon Mar 11 10:32:18 2019 +0200
  tiedostoja/file3 | 0
  3 files changed, 0 insertions(+), 0 deletions(-)
 
+Epäsynkronointitesti.
