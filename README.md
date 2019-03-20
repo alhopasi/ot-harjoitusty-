@@ -4,9 +4,9 @@
 
 [dokumentaatio](swduel/dokumentaatio)
 
-[työaikakirjanpito](swduel/tuntikirjanpito.md)
+[työaikakirjanpito](swduel/dokumentaatio/tuntikirjanpito.md)
 
-[vaatimusmäärittely](swduel/vaatimusmaarittely.md)
+[vaatimusmäärittely](swduel/dokumentaatio/vaatimusmaarittely.md)
 
 
 ## Laskarit
