@@ -1,6 +1,15 @@
 # Ohjelmistotekniikka harjoitustyö
 
-## Tehtävät
+## Harjoitustyö
+
+[dokumentaatio](swduel/dokumentaatio)
+
+[työaikakirjanpito](swduel/tuntikirjanpito.md)
+
+[vaatimusmäärittely](swduel/vaatimusmaarittely.md)
+
+
+## Laskarit
 
 **Viikko 1**
 
