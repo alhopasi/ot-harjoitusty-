@@ -10,8 +10,9 @@ Pelin pelaamiseen tarvitaan 2 henkilöä, jotka pelaavat samalta koneelta. Pelis
 
 ## Käyttöliittymä
 
-<img src="kuvat/otsikkonakyma.jpg" alt=otsikkonakyma width="400" />
-<img src="kuvat/taistelunakyma.jpg" alt=taistelunakyma width="400" />
+Käyttöliittymä on mahdollisimman yksinkertainen. Otsikkonäkymästä voi siirtyä pelaamaan tai lukemaan ohjeet.
+
+<img src="kuvat/otsikkonakyma.jpg" alt=otsikkonakyma width="400" /><img src="kuvat/taistelunakyma.jpg" alt=taistelunakyma width="400" />
 
 ## Pelin toiminnallisuus
 
