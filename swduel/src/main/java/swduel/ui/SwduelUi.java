@@ -6,16 +6,16 @@ import javafx.stage.Stage;
 public class SwduelUi extends Application {
 
     private TitleMenu titleMenu;
-//    private Game game;
+    private Game game;
     private SceneHandler sceneHandler;
     
     @Override
     public void init() {
         String areena = "areena1";
         String version = "0.1";
-
-        titleMenu = new TitleMenu(version);
         
+        titleMenu = new TitleMenu(version);
+        game = new Game(areena);
 
 //        logic = new Logic(players, width, height);
 //        gamescreen = new Gamescreen(logic);
@@ -26,7 +26,7 @@ public class SwduelUi extends Application {
         stage.setTitle("SW Duel");
         stage.setWidth(1024);
         stage.setHeight(768);
-        sceneHandler = new SceneHandler(stage, titleMenu.getScene());
+        sceneHandler = new SceneHandler(stage, titleMenu.getScene(), game.getScene());
         stage.show();
     }
 

@@ -15,18 +15,17 @@ public class SceneHandler {
     private Scene titleScene;
     private Scene gameScene;
 
-    public SceneHandler(Stage stage, Scene titleScene) {
+    public SceneHandler(Stage stage, Scene titleScene, Scene gameScene) {
         this.stage = stage;
         this.titleScene = titleScene;
+        this.gameScene = gameScene;
+        
         currentScene = titleScene;
-
-        BorderPane window = new BorderPane();
-        window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        this.gameScene = new Scene(window);
 
         initTitleKeylistener();
         initGameKeylistener();
-        stage.setScene(titleScene);
+
+        stage.setScene(currentScene);
     }
 
     private void initTitleKeylistener() {
