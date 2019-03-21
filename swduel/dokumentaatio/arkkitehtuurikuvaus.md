@@ -3,7 +3,8 @@
 ## Rakenne
 
 Koodin rakenne on seuraava:
-SwduelUi -> TitleMenu / Game
+SwduelUi -> TitleMenu
+TitleMenu -> Game
 Game -> Logic / GameScreen
 Logic -> Kaikki loput
 
@@ -17,6 +18,8 @@ Käyttöliittymä sisältää kaksi erillistä näkymää
 molemmat ovat toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä, eli sijoitettu sovelluksen stageen. Käyttöliittymä on luokassa swduel.ui.SwduelUi.
 
 ## Sovelluslogiikka
+
+Löytyy pakkauksesta swduel.domain
 
 Valikkonäkymän sovelluslogiikasta huolehtii luokka TitleMenu.
 
@@ -36,7 +39,7 @@ Luokka Logic:
 
 Luokka GameScreen:
 - Piirtää pelialueen ja päivittää sitä (40 fps?)
-- Tausta (alussa vaalensininen?)
-- Ruudut missä voi olla
+- Tausta (vaalensininen?)
+- Blokit
 - Pelaajat
 - Esineet (ammukset)
