@@ -8,4 +8,5 @@
 |       | 3      | projektin luonti ja TitleMenu näkymä |
 |       | 1      | checkstylen lisäys ja refactorointi |
 |       | 2      | Scenen vaihto ja pelistä poistuminen näppikseltä |
-| yht.  | 10     |
+|       | 1      | Pelin piirtämisen alkuaskeleita |
+| yht.  | 11     |

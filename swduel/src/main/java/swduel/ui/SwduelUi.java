@@ -2,23 +2,24 @@ package swduel.ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import swduel.domain.Gamescreen;
+import swduel.domain.Logic;
 
 public class SwduelUi extends Application {
 
     private TitleMenu titleMenu;
-    private Game game;
+    private Logic logic;
+    private Gamescreen gamescreen;
     private SceneHandler sceneHandler;
     
     @Override
     public void init() {
-        String areena = "areena1";
+        String arena = "arena1";
         String version = "0.1";
         
         titleMenu = new TitleMenu(version);
-        game = new Game(areena);
-
-//        logic = new Logic(players, width, height);
-//        gamescreen = new Gamescreen(logic);
+        logic = new Logic(arena);
+        gamescreen = new Gamescreen(logic);
     }
 
     @Override
@@ -26,12 +27,11 @@ public class SwduelUi extends Application {
         stage.setTitle("SW Duel");
         stage.setWidth(1024);
         stage.setHeight(768);
-        sceneHandler = new SceneHandler(stage, titleMenu.getScene(), game.getScene());
+        sceneHandler = new SceneHandler(stage, titleMenu.getScene(), gamescreen.getScene());
         stage.show();
     }
 
     public static void main(String[] args) {
-        System.out.println("hello world!");
         launch(SwduelUi.class);
     }
 }
