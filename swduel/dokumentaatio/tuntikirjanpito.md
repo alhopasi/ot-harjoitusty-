@@ -6,4 +6,5 @@
 |       | 2      | vaatimuusmäärittelyä   |
 | 21.3. | 1      | suunnittelua ja arkkitehtuurikuvaus |
 |       | 3      | projektin luonti ja TitleMenu näkymä |
+|       | 1      | checkstylen lisäys ja refactorointi |
 | yht.  | 8      |

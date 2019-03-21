@@ -5,19 +5,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SwduelUi extends Application {
-    
+
     private TitleMenu titleMenu;
-    
+
     // TO DO:
     // pelinäkymä
-    
     @Override
     public void init() {
-          String areena = "areena1";
-          String version = "0.1";
+        String areena = "areena1";
+        String version = "0.1";
 
-          titleMenu = new TitleMenu(version);
-          
+        titleMenu = new TitleMenu(version);
+
 //        logic = new Logic(players, width, height);
 //        gamescreen = new Gamescreen(logic);
     }
@@ -32,7 +31,7 @@ public class SwduelUi extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     public static void main(String[] args) {
         System.out.println("hello world!");
         launch(SwduelUi.class);

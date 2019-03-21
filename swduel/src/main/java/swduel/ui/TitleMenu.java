@@ -11,26 +11,30 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 public class TitleMenu {
 
-    private String version;
+    private final String version;
 
     public TitleMenu(String version) {
         this.version = version;
     }
 
     public Scene getScene() {
+        VBox centerBox = createCenterBox();
+        VBox bottomBox = createBottomBox();
 
-        Label titleLabel = createLabel("SW Duel", 60);
-        titleLabel.setPadding(new Insets(100, 20, 20, 20));
-        Label playLabel = createLabel("<< Press Enter >>", 30);
+        BorderPane window = new BorderPane();
+        window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+        window.setBottom(bottomBox);
+        window.setCenter(centerBox);
 
-        VBox centerBox = new VBox();
-        centerBox.setAlignment(Pos.CENTER);
-        centerBox.getChildren().addAll(titleLabel, playLabel);
+        Scene game = new Scene(window);
 
+        return game;
+    }
+
+    private VBox createBottomBox() {
         String infoString = "How to play:\n"
                 + "eliminate your opponent until you win.\n"
                 + "          Player 1 keys:    Player 2 keys:\n"
@@ -47,14 +51,18 @@ public class TitleMenu {
         bottomBox.setAlignment(Pos.CENTER);
         bottomBox.getChildren().addAll(infoLabel, versionBox);
 
-        BorderPane window = new BorderPane();
-        window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        window.setBottom(bottomBox);
-        window.setCenter(centerBox);
+        return bottomBox;
+    }
 
-        Scene game = new Scene(window);
+    private VBox createCenterBox() {
+        Label titleLabel = createLabel("SW Duel", 60);
+        titleLabel.setPadding(new Insets(100, 20, 20, 20));
+        Label playLabel = createLabel("<< Press Enter >>", 30);
+        VBox centerBox = new VBox();
+        centerBox.setAlignment(Pos.CENTER);
+        centerBox.getChildren().addAll(titleLabel, playLabel);
 
-        return game;
+        return centerBox;
     }
 
     private Label createLabel(String text, int size) {
