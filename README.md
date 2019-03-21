@@ -8,6 +8,8 @@
 
 [vaatimusmäärittely](swduel/dokumentaatio/vaatimusmaarittely.md)
 
+[arkkitehtuurikuvaus](swduel/dokumentaatio/arkkitehtuurikuvaus.md)
+
 
 ## Laskarit
 

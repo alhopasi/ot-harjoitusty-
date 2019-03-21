@@ -4,4 +4,5 @@
 | :---: | :---   | :---                   |
 | 20.3. | 1      | dokumentoinnin aloitus ja materiaaliin perehtyminen |
 |       | 2      | vaatimuusmäärittelyä   |
-| yht.  | 3      |
+| 21.3. | 2      | suunnittelua ja arkkitehtuurikuvaus |
+| yht.  | 5      |
