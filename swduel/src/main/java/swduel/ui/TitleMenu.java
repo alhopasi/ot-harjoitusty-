@@ -29,9 +29,9 @@ public class TitleMenu {
         window.setBottom(bottomBox);
         window.setCenter(centerBox);
 
-        Scene game = new Scene(window);
+        Scene titleScene = new Scene(window);
 
-        return game;
+        return titleScene;
     }
 
     private VBox createBottomBox() {
