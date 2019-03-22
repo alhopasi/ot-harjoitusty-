@@ -3,10 +3,11 @@
 | päivä | tunnit | mitä tein              |
 | :---: | :---   | :---                   |
 | 20.3. | 1      | dokumentoinnin aloitus ja materiaaliin perehtyminen |
-|       | 2      | vaatimuusmäärittelyä   |
+|       | 2      | vaatimusmäärittelyä   |
 | 21.3. | 1      | suunnittelua ja arkkitehtuurikuvaus |
 |       | 3      | projektin luonti ja TitleMenu näkymä |
-|       | 1      | checkstylen lisäys ja refactorointi |
-|       | 2      | Scenen vaihto ja pelistä poistuminen näppikseltä |
-|       | 1      | Pelin piirtämisen alkuaskeleita |
+|       | 1      | checkstylen lisäys ja refaktorointi |
+|       | 2      | scenen vaihto ja pelistä poistuminen näppikseltä |
+|       | 1      | pelin piirtämisen alkuaskeleita |
+| 22.3. | 1      | areenan luominen tiedostosta |
 | yht.  | 11     |

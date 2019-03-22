@@ -4,8 +4,8 @@ public class Logic {
 
     private Arena arena;
 
-    public Logic(String arena) {
-        this.arena = new Arena(arena);
+    public Logic(String arenaFile) {
+        this.arena = new Arena(arenaFile);
     }
     
     public Arena getArena() {

@@ -14,11 +14,11 @@ public class SwduelUi extends Application {
     
     @Override
     public void init() {
-        String arena = "arena1";
+        String arenaFile = "testArena";
         String version = "0.1";
         
         titleMenu = new TitleMenu(version);
-        logic = new Logic(arena);
+        logic = new Logic(arenaFile);
         gamescreen = new Gamescreen(logic);
     }
 
