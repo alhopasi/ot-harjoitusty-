@@ -10,4 +10,5 @@
 |       | 2      | scenen vaihto ja pelistä poistuminen näppikseltä |
 |       | 1      | pelin piirtämisen alkuaskeleita |
 | 22.3. | 1      | areenan luominen tiedostosta |
-| yht.  | 11     |
+|       | 2      | areenan piirtäminen |
+| yht.  | 14     |

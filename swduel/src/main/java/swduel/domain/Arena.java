@@ -1,16 +1,13 @@
 package swduel.domain;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import swduel.utils.Utils;
 
 public class Arena {
 
-    int width;
-    int height;
-    int[][] arena;
+    private int width;
+    private int height;
+    private int[][] arena;
 
     public Arena(String arenaFile) {
         createArena(arenaFile);
@@ -29,7 +26,7 @@ public class Arena {
     }
 
     private void createArena(String arenaFile) {
-        List<String> lines = readArenaFile(arenaFile);
+        List<String> lines = Utils.readFile("arenas/" + arenaFile);
         width = lines.get(0).length();
         height = lines.size();
         arena = new int[height][width];
@@ -40,20 +37,5 @@ public class Arena {
                 arena[y][x] = Integer.valueOf(chars[x]);
             }
         }
-    }
-    
-    private List<String> readArenaFile(String arenaFile) {
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("arenas/" + arenaFile))) {
-            String line = br.readLine();
-            while (line != null) {
-                lines.add(line);
-                line = br.readLine();
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return lines;
     }
 }
