@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -11,13 +12,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import swduel.domain.Gamescreen;
+import swduel.domain.Logic;
 
-public class TitleMenu {
+public class GameMenu {
 
-    private final String version;
+    private Stage stage;
+    private Logic logic;
+    private Gamescreen gamescreen;
+    private String version;
+    private String arena;
 
-    public TitleMenu(String version) {
-        this.version = version;
+    public GameMenu(Stage stage) {
+        this.stage = stage;
+        this.arena = "testArena";
+        this.version = "0.1";
     }
 
     public Scene getScene() {
@@ -30,6 +40,8 @@ public class TitleMenu {
         window.setCenter(centerBox);
 
         Scene titleScene = new Scene(window);
+
+        initKeyListener(titleScene);
 
         return titleScene;
     }
@@ -58,9 +70,10 @@ public class TitleMenu {
         Label titleLabel = createLabel("SW Duel", 60);
         titleLabel.setPadding(new Insets(100, 20, 20, 20));
         Label playLabel = createLabel("<< Press Enter >>", 30);
+        Label arenaLabel = createLabel(arena, 14);
         VBox centerBox = new VBox();
         centerBox.setAlignment(Pos.CENTER);
-        centerBox.getChildren().addAll(titleLabel, playLabel);
+        centerBox.getChildren().addAll(titleLabel, playLabel, arenaLabel);
 
         return centerBox;
     }
@@ -72,5 +85,17 @@ public class TitleMenu {
         label.setFont(new Font("Consolas", size));
 
         return label;
+    }
+
+    private void initKeyListener(Scene titleScene) {
+        titleScene.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                System.exit(0);
+            } else if (event.getCode() == KeyCode.ENTER) {
+                logic = new Logic(arena);
+                gamescreen = new Gamescreen(logic, stage, titleScene);
+                stage.setScene(gamescreen.getScene());
+            }
+        });
     }
 }

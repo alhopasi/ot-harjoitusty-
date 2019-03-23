@@ -11,10 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import swduel.utils.Utils;
 
 public class Gamescreen {
@@ -25,8 +27,12 @@ public class Gamescreen {
     private int width;
     private int height;
     private Map<Integer, PixelReader> images;
+    private Stage stage;
+    private Scene titleScene;
 
-    public Gamescreen(Logic logic) {
+    public Gamescreen(Logic logic, Stage stage, Scene titleScene) {
+        this.stage = stage;
+        this.titleScene = titleScene;
         this.logic = logic;
         this.height = logic.getArena().getHeight() * 16;
         this.width = logic.getArena().getWidth() * 16;
@@ -42,6 +48,8 @@ public class Gamescreen {
         window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         window.setCenter(canvas);
         Scene gameScene = new Scene(window);
+
+        initKeyListener(gameScene);
 
         new AnimationTimer() {
             private long before;
@@ -59,6 +67,14 @@ public class Gamescreen {
         }.start();
 
         return gameScene;
+    }
+
+    private void initKeyListener(Scene gameScene) {
+        gameScene.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                stage.setScene(titleScene);
+            }
+        });
     }
 
     private void importGraphics() {
