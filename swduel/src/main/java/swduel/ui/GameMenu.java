@@ -23,18 +23,24 @@ import swduel.domain.Logic;
 
 public class GameMenu {
 
-    private Stage stage;
     private Logic logic;
     private Gamescreen gamescreen;
     private String version;
     private List<String> arenas;
     private int arenaNumber;
     private Label arenaLabel;
+    private Stage stage;
+    private Game game;
 
     public GameMenu(Stage stage) {
-        this.version = "0.1";
         this.stage = stage;
+        this.version = "0.1";
         this.arenas = readArenaNames();
+
+    }
+
+    public String getChosenArena() {
+        return arenas.get(arenaNumber);
     }
 
     public Scene getScene() {
@@ -46,11 +52,13 @@ public class GameMenu {
         window.setBottom(bottomBox);
         window.setCenter(centerBox);
 
-        Scene titleScene = new Scene(window);
+        Scene menuScene = new Scene(window);
+        
+        game = new Game(stage, menuScene);
+        
+        addKeyHandler(menuScene);
 
-        handleActions(titleScene);
-
-        return titleScene;
+        return menuScene;
     }
 
     private List<String> readArenaNames() {
@@ -105,20 +113,18 @@ public class GameMenu {
         return label;
     }
 
-    private void handleActions(Scene titleScene) {
-        titleScene.setOnKeyPressed((event) -> {
+    private void addKeyHandler(Scene menuScene) {
+        menuScene.setOnKeyPressed((event) -> {
+            handleArenaChange(event);
             if (event.getCode() == KeyCode.ESCAPE) {
                 System.exit(0);
+            } else if (event.getCode() == KeyCode.ENTER) {
+                stage.setScene(game.getScene());
+                game.initGame(getChosenArena());
             }
-            if (event.getCode() == KeyCode.ENTER) {
-                logic = new Logic(arenas.get(arenaNumber));
-                gamescreen = new Gamescreen(logic, stage, titleScene);
-                stage.setScene(gamescreen.getScene());
-            }
-            handleArenaChange(event);
         });
     }
-    
+
     private void handleArenaChange(KeyEvent event) {
         if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT) {
             if (event.getCode() == KeyCode.LEFT) {

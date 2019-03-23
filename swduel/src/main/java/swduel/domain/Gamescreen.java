@@ -27,31 +27,26 @@ public class Gamescreen {
     private int width;
     private int height;
     private Map<Integer, PixelReader> images;
-    private Stage stage;
-    private Scene titleScene;
+    AnimationTimer drawingTimer;
 
-    public Gamescreen(Logic logic, Stage stage, Scene titleScene) {
-        this.stage = stage;
-        this.titleScene = titleScene;
+    public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;
         this.height = logic.getArena().getHeight() * 16;
         this.width = logic.getArena().getWidth() * 16;
-        this.canvas = new Canvas(width, height);
+        this.canvas = canvas;
+        canvas.setWidth(width);
+        canvas.setHeight(height);
         this.drawingTool = canvas.getGraphicsContext2D();
         this.images = new HashMap<>();
 
         importGraphics();
+
+        initDrawing();
     }
 
-    public Scene getScene() {
-        BorderPane window = new BorderPane();
-        window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        window.setCenter(canvas);
-        Scene gameScene = new Scene(window);
+    public void initDrawing() {
 
-        initKeyListener(gameScene);
-
-        new AnimationTimer() {
+        drawingTimer = new AnimationTimer() {
             private long before;
 
             @Override
@@ -62,19 +57,15 @@ public class Gamescreen {
                 before = present;
 
                 drawAll();
-
+                
             }
-        }.start();
-
-        return gameScene;
+        };
+        
+        drawingTimer.start();
     }
-
-    private void initKeyListener(Scene gameScene) {
-        gameScene.setOnKeyPressed((event) -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                stage.setScene(titleScene);
-            }
-        });
+    
+    public void stopDrawing() {
+        drawingTimer.stop();
     }
 
     private void importGraphics() {

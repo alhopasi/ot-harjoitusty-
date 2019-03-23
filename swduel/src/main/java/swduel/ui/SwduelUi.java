@@ -13,10 +13,10 @@ public class SwduelUi extends Application {
 
     @Override
     public void start(Stage stage) {
+        gameMenu = new GameMenu(stage);
         stage.setTitle("SW Duel");
         stage.setWidth(1024);
         stage.setHeight(768);
-        gameMenu = new GameMenu(stage);
         stage.setScene(gameMenu.getScene());
         stage.show();
     }
