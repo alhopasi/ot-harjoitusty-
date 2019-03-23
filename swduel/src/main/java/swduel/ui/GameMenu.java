@@ -1,10 +1,15 @@
 package swduel.ui;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -22,12 +27,14 @@ public class GameMenu {
     private Logic logic;
     private Gamescreen gamescreen;
     private String version;
-    private String arena;
+    private List<String> arenas;
+    private int arenaNumber;
+    private Label arenaLabel;
 
     public GameMenu(Stage stage) {
-        this.stage = stage;
-        this.arena = "testArena";
         this.version = "0.1";
+        this.stage = stage;
+        this.arenas = readArenaNames();
     }
 
     public Scene getScene() {
@@ -41,9 +48,18 @@ public class GameMenu {
 
         Scene titleScene = new Scene(window);
 
-        initKeyListener(titleScene);
+        handleActions(titleScene);
 
         return titleScene;
+    }
+
+    private List<String> readArenaNames() {
+        List<String> arenaList = new ArrayList<>();
+        for (File file : new File("arenas/").listFiles()) {
+            arenaList.add(file.getName());
+        }
+        Collections.sort(arenaList);
+        return arenaList;
     }
 
     private VBox createBottomBox() {
@@ -68,12 +84,14 @@ public class GameMenu {
 
     private VBox createCenterBox() {
         Label titleLabel = createLabel("SW Duel", 60);
-        titleLabel.setPadding(new Insets(100, 20, 20, 20));
+        titleLabel.setPadding(new Insets(160, 20, 20, 20));
         Label playLabel = createLabel("<< Press Enter >>", 30);
-        Label arenaLabel = createLabel(arena, 14);
+        arenaLabel = createLabel(arenas.get(arenaNumber), 14);
+        Label arenaInfoLabel = createLabel("Use arrows to select arena", 12);
+        arenaInfoLabel.setPadding(new Insets(0, 20, 20, 20));
         VBox centerBox = new VBox();
         centerBox.setAlignment(Pos.CENTER);
-        centerBox.getChildren().addAll(titleLabel, playLabel, arenaLabel);
+        centerBox.getChildren().addAll(titleLabel, playLabel, arenaLabel, arenaInfoLabel);
 
         return centerBox;
     }
@@ -87,15 +105,34 @@ public class GameMenu {
         return label;
     }
 
-    private void initKeyListener(Scene titleScene) {
+    private void handleActions(Scene titleScene) {
         titleScene.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 System.exit(0);
-            } else if (event.getCode() == KeyCode.ENTER) {
-                logic = new Logic(arena);
+            }
+            if (event.getCode() == KeyCode.ENTER) {
+                logic = new Logic(arenas.get(arenaNumber));
                 gamescreen = new Gamescreen(logic, stage, titleScene);
                 stage.setScene(gamescreen.getScene());
             }
+            handleArenaChange(event);
         });
+    }
+    
+    private void handleArenaChange(KeyEvent event) {
+        if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.RIGHT) {
+            if (event.getCode() == KeyCode.LEFT) {
+                arenaNumber--;
+                if (arenaNumber < 0) {
+                    arenaNumber = arenas.size() - 1;
+                }
+            } else {
+                arenaNumber++;
+                if (arenaNumber == arenas.size()) {
+                    arenaNumber = 0;
+                }
+            }
+            arenaLabel.setText(arenas.get(arenaNumber));
+        }
     }
 }

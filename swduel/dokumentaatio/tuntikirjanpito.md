@@ -11,5 +11,6 @@
 |       | 1      | pelin piirtämisen alkuaskeleita |
 | 22.3. | 1      | areenan luominen tiedostosta |
 |       | 2      | areenan piirtäminen, pientä refaktorointia |
-| 23.3. | 1      | refaktorointia |
+| 23.3. | 0,5    | refaktorointia |
+|       | 0,5    | tuki monelle areenalle, areenoiden valinta valikosta |
 | yht.  | 14     |
