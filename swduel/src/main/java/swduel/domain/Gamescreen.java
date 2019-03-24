@@ -4,19 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import swduel.utils.Utils;
 
 public class Gamescreen {
@@ -27,7 +21,7 @@ public class Gamescreen {
     private int width;
     private int height;
     private Map<Integer, PixelReader> images;
-    AnimationTimer drawingTimer;
+    private AnimationTimer drawingTimer;
 
     public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;
@@ -45,7 +39,7 @@ public class Gamescreen {
     }
 
     public void initDrawing() {
-
+       
         drawingTimer = new AnimationTimer() {
             private long before;
 
@@ -73,7 +67,6 @@ public class Gamescreen {
         for (int i = 0; i < filenames.size(); i++) {
             String filename = filenames.get(i);
             images.put(i, new Image("file:images/" + filename).getPixelReader());
-
         }
     }
 
