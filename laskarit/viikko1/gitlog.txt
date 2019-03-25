@@ -1,22 +1,116 @@
-commit c0215c2cdaa231033dd9f013b95f57205a2554b8
+
+[alhopasi@Kultakala tiedostoja]$ git log --stat | cat
+commit b6578aa512f3eebe6e96ff98dd8c95c84026957e
 Author: Pasi Alho <alho.pasi@iki.fi>
-Date:   Mon Mar 11 10:34:07 2019 +0200
+Date:   Mon Mar 25 09:48:50 2019 +0200
 
-    tehty
+    rm file1, mv file2 -> file22
 
- tiedostoja/file1 | 0
- tiedostoja/file2 | 0
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
  2 files changed, 0 insertions(+), 0 deletions(-)
 
-commit 953187ddc45f004f5045589b35081f6635de6b4e
+commit 8a76ed60a0daad263b6cf5526d1644108ffaa45d
 Author: Pasi Alho <alho.pasi@iki.fi>
-Date:   Mon Mar 11 10:32:18 2019 +0200
+Date:   Mon Mar 25 09:45:46 2019 +0200
 
-    aloitetaan tästä
+    tiedostoja luotu
 
  tiedostoja/file1 | 0
  tiedostoja/file2 | 0
  tiedostoja/file3 | 0
  3 files changed, 0 insertions(+), 0 deletions(-)
 
-Epäsynkronointitesti.
+commit 51c953d2c1d37aaf15b28aa1cb4a00a998b5b9f8
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:41:51 2019 +0200
+
+    -p harjoittelua
+
+ eka.txt    | 1 +
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit a92994fe29601f9237bf4f83025185215a6104d5
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:40:11 2019 +0200
+
+    nimettiin tiedosto.txt -> eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit cbd53b15d66f59d5c8d9e54c866647cbfc02e1a1
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:39:30 2019 +0200
+
+    poistettiin toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5a93b983c7cc90554fcd57d09f68d8740c7833cd
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:36:59 2019 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit 8bfa7129d22cdb25ee4a724aa1c203a661fa6909
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:35:33 2019 +0200
+
+    lisätty paljon tekstiä tiedosto.txt
+
+ tiedosto.txt | 14344391 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 14344391 insertions(+)
+
+commit 8f1fdcd95024353ab8fda294112e4e0816d80fee
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:33:50 2019 +0200
+
+    stuff/stuff lisätty
+
+ stuff/stuff | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit bdb2e589349480dd18f872422f99549f3d6d767b
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:33:22 2019 +0200
+
+    muutokset toiseen ja kolmanteen
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit cfc95eef1ee5a09058fd8dcc0607ec57bd5a1841
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:32:36 2019 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 2f5a47ea344f7b5d2e37f78f8426ee58689130d5
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:31:44 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 4d979134817861f73b28d9c76b9aa5bd5362ce66
+Author: Pasi Alho <alho.pasi@iki.fi>
+Date:   Mon Mar 25 09:29:03 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+[alhopasi@Kultakala tiedostoja]$ 
