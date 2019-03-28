@@ -2,6 +2,8 @@
 
 ## Harjoitustyö
 
+Ajaaksesi sovelluksen, suorita juurihakemistossa *swduel/* komento: *mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi*
+
 [dokumentaatio](swduel/dokumentaatio)
 
 [työaikakirjanpito](swduel/dokumentaatio/tuntikirjanpito.md)
