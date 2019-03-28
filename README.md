@@ -1,8 +1,8 @@
-# Ohjelmistotekniikka harjoitustyö
+# SW Duel
 
-## Harjoitustyö
+Sovellus on peli, jossa kaksi pelaajaa taistelee toisiaan vastaan. Pelihahmoilla on aina jokin tietty ase, jolla yritetään saada osuma toiseen. Pisteen saaneen pelaajan ase vaihtuu aina huonompaan, kunnes kaikki aseet on käyty läpi. Se, joka voitti toisen kaikilla aseilla ensin, voittaa pelin.
 
-Ajaaksesi sovelluksen, suorita juurihakemistossa *swduel/* komento: *mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi*
+## Dokumentaatio
 
 [dokumentaatio](swduel/dokumentaatio)
 
@@ -12,22 +12,9 @@ Ajaaksesi sovelluksen, suorita juurihakemistossa *swduel/* komento: *mvn compile
 
 [arkkitehtuurikuvaus](swduel/dokumentaatio/arkkitehtuurikuvaus.md)
 
+## Komentorivikomennot
 
-## Laskarit
-
-**Viikko 1**
-
-[kansio](laskarit/viikko1/)
-
-[gitlog.txt](laskarit/viikko1/gitlog.txt)
-
-[komentorivi.txt](laskarit/viikko1/komentorivi.txt)
-
-**Viikko 2**
-
-[kansio](laskarit/viikko2/)
-
-[jacoco kuva](laskarit/viikko2/testit.jpg)
+Ajaaksesi sovelluksen, suorita juurihakemistossa *swduel/* komento: *mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi* tai käytä NetBeansia.
 
 Helsingin yliopiston kurssin **Ohjelmistotekniikka** harjoitustyö.
 

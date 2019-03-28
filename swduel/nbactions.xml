@@ -22,4 +22,12 @@
                 <goal>checkstyle:checkstyle</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-jacoco</actionName>
+            <displayName>jacoco</displayName>
+            <goals>
+                <goal>test</goal>
+                <goal>jacoco:report</goal>
+            </goals>
+        </action>
     </actions>

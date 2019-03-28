@@ -14,6 +14,6 @@
 | 23.3. | 0,5    | refaktorointia,  |
 |       | 0,5    | tuki monelle areenalle, areenoiden valinta valikosta |
 |       | 2      | bugin korjausta |
-| yht.  | 17     |
 | 24.3. | 2      | pelaajaolioiden lisäys, ilmestymispaikan arpominen |
-| yht.  | 19     |
+| 28.3. | 1,5    | testien tekoa, jacocon lisäys |
+| yht.  | 20,5   |

@@ -8,10 +8,6 @@ public class SwduelUi extends Application {
     private GameMenu gameMenu;
     
     @Override
-    public void init() {
-    }
-
-    @Override
     public void start(Stage stage) {
         gameMenu = new GameMenu(stage);
         stage.setTitle("SW Duel");
