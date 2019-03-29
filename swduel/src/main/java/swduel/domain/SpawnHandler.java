@@ -43,7 +43,7 @@ public class SpawnHandler {
 
     private int checkTileBelow(int y, int x) {
         if (arena.getTile(y, x) != 0) {
-            return y - 1;
+            return y;
         }
         return (checkTileBelow(y + 1, x));
     }

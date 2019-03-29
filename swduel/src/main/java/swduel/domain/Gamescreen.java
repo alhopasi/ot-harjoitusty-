@@ -1,5 +1,6 @@
 package swduel.domain;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,25 +12,24 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import swduel.utils.Utils;
 
 public class Gamescreen {
 
     private Logic logic;
     private Canvas canvas;
     private GraphicsContext drawingTool;
-    private int width;
-    private int height;
-    private Map<Integer, PixelReader> images;
+    private int arenaWidth;
+    private int arenaHeight;
+    private Map<String, PixelReader> images;
     private AnimationTimer drawingTimer;
 
     public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;
-        this.height = logic.getArena().getHeight() * 16;
-        this.width = logic.getArena().getWidth() * 16;
+        this.arenaHeight = logic.getArena().getHeight() * 16;
+        this.arenaWidth = logic.getArena().getWidth() * 16;
         this.canvas = canvas;
-        canvas.setWidth(width);
-        canvas.setHeight(height);
+        canvas.setWidth(arenaWidth);
+        canvas.setHeight(arenaHeight);
         this.drawingTool = canvas.getGraphicsContext2D();
         this.images = new HashMap<>();
 
@@ -39,7 +39,7 @@ public class Gamescreen {
     }
 
     public void initDrawing() {
-       
+
         drawingTimer = new AnimationTimer() {
             private long before;
 
@@ -51,22 +51,22 @@ public class Gamescreen {
                 before = present;
 
                 drawAll();
-                
+
             }
         };
-        
+
         drawingTimer.start();
     }
-    
+
     public void stopDrawing() {
         drawingTimer.stop();
     }
 
     private void importGraphics() {
-        List<String> filenames = Utils.readFile("images/imageList");
-        for (int i = 0; i < filenames.size(); i++) {
-            String filename = filenames.get(i);
-            images.put(i, new Image("file:images/" + filename).getPixelReader());
+
+        for (File file : new File("images/").listFiles()) {
+            String filename = file.getName();
+            images.put(filename.split("\\.")[0], new Image("file:images/" + filename).getPixelReader());
         }
     }
 
@@ -76,8 +76,43 @@ public class Gamescreen {
 
         drawBackground(pixelWriter);
         drawArena(pixelWriter);
+        drawPlayers(pixelWriter);
 
         drawingTool.drawImage(newScreen, 0, 0);
+    }
+
+    private void drawPlayers(PixelWriter pixelWriter) {
+        List<Player> players = logic.getPlayers();
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            int height = player.getHeight();
+            int width = player.getWidth();
+
+            PixelReader file;
+            file = images.getOrDefault("players", images.get("0"));
+
+            drawPlayer(pixelWriter, i, player, width, height, file);
+        }
+    }
+
+    private void drawPlayer(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file) {
+        System.out.println("Drawing image of player " + i + "  width: " + width + "  height: " + height);
+        System.out.println("Player x: " + player.getX() + "  Player y: " + player.getY());
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int pixel = file.getArgb(x, y + i * height);
+
+                if ((pixel >> 24) == 0x00) {
+                    continue;
+                }
+                Color color = file.getColor(x, y + i * height);
+
+                int drawX = player.getX() + x;
+                int drawY = player.getY() + y;
+
+                pixelWriter.setColor(drawX, drawY - height, color);
+            }
+        }
     }
 
     private void drawBackground(PixelWriter pixelWriter) {
@@ -92,18 +127,18 @@ public class Gamescreen {
         for (int y = 0; y < logic.getArena().getHeight(); y++) {
             for (int x = 0; x < logic.getArena().getWidth(); x++) {
                 if (logic.getArena().getTile(y, x) != 0) {
-                    drawTile(logic.getArena().getTile(y, x), y, x, pixelWriter);
+                    drawTile(String.valueOf(logic.getArena().getTile(y, x)), y, x, pixelWriter);
                 }
             }
         }
     }
 
-    private void drawTile(int tileNumber, int y, int x, PixelWriter pixelWriter) {
+    private void drawTile(String tileNumber, int y, int x, PixelWriter pixelWriter) {
         int tileWidth = 16;
         int tileHeight = 16;
 
         PixelReader file;
-        file = images.getOrDefault(tileNumber, images.get(0));
+        file = images.getOrDefault(tileNumber, images.get("0"));
 
         pixelWriter.setPixels(x * tileWidth, y * tileHeight, tileWidth, tileHeight, file, 0, 0);
     }

@@ -2,7 +2,6 @@ package swduel.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.paint.Color;
 
 public class Logic {
 
@@ -15,8 +14,8 @@ public class Logic {
         players = new ArrayList<>();
         spawner = new SpawnHandler(players, arena);
         
-        players.add(new Player(Color.GREEN));
-        players.add(new Player(Color.RED));
+        players.add(new Player());
+        players.add(new Player());
         for (Player player : players) {
             spawner.randomPlayerLocation(player);
         }
@@ -24,5 +23,9 @@ public class Logic {
 
     public Arena getArena() {
         return this.arena;
+    }
+    
+    public List<Player> getPlayers() {
+        return this.players;
     }
 }

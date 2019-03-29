@@ -16,4 +16,6 @@
 |       | 2      | bugin korjausta |
 | 24.3. | 2      | pelaajaolioiden lisäys, ilmestymispaikan arpominen |
 | 28.3. | 1,5    | testien tekoa, jacocon lisäys |
-| yht.  | 20,5   |
+| 29.3. | 1      | pelaajagrafiikan etsintä ja muokkaus |
+|       | 1      | pelaajien piirtäminen seisomassa |
+| yht.  | 22,5   |

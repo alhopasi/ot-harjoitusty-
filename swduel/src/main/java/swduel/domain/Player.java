@@ -1,20 +1,20 @@
 package swduel.domain;
 
-import javafx.scene.paint.Color;
-
 public class Player {
 
 //   private Weapon weapon;
     private int score;
     private int x;
     private int y;
-    private Color color;
+    private int height;
+    private int width;
 
     // location -1 when player is not on map (dead or not in the game yet)
-    public Player(Color color) {
-        this.color = color;
+    public Player() {
         this.x = -1;
         this.y = -1;
+        this.height = 32;
+        this.width = 24;
     }
     
     public int getX() {
@@ -41,8 +41,12 @@ public class Player {
         this.score = score;
     }
     
-    public Color getColor() {
-        return color;
+    public int getHeight() {
+        return this.height;
+    }
+    
+    public int getWidth() {
+        return this.width;
     }
     
 }
