@@ -25,8 +25,8 @@ public class Gamescreen {
 
     public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;
-        this.arenaHeight = logic.getArena().getHeight() * 16;
-        this.arenaWidth = logic.getArena().getWidth() * 16;
+        this.arenaHeight = logic.getArena().getHeight() * 32;
+        this.arenaWidth = logic.getArena().getWidth() * 32;
         this.canvas = canvas;
         canvas.setWidth(arenaWidth);
         canvas.setHeight(arenaHeight);
@@ -134,8 +134,8 @@ public class Gamescreen {
     }
 
     private void drawTile(String tileNumber, int y, int x, PixelWriter pixelWriter) {
-        int tileWidth = 16;
-        int tileHeight = 16;
+        int tileWidth = 32;
+        int tileHeight = 32;
 
         PixelReader file;
         file = images.getOrDefault(tileNumber, images.get("0"));

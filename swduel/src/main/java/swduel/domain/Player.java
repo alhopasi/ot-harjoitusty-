@@ -13,8 +13,8 @@ public class Player {
     public Player() {
         this.x = -1;
         this.y = -1;
-        this.height = 32;
-        this.width = 24;
+        this.height = 64;
+        this.width = 32;
     }
     
     public int getX() {
@@ -47,6 +47,11 @@ public class Player {
     
     public int getWidth() {
         return this.width;
+    }
+    
+    @Override
+    public String toString() {
+        return "(" + x + ":" + y + ")";
     }
     
 }
