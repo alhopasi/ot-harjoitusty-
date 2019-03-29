@@ -65,8 +65,8 @@ public class SpawnHandler {
     private void movePlayerToFloor(Player player) {
         int x = player.getX();
         int y = player.getY();
-        player.setY(y + 1);
-        if (arena.getTile(y + 1, x) == 0) {
+        if (arena.getTile(y, x) == 0) {
+            player.setY(y + 1);
             movePlayerToFloor(player);
         }
     }

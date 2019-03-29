@@ -18,4 +18,5 @@
 | 28.3. | 1,5    | testien tekoa, jacocon lisäys |
 | 29.3. | 1      | pelaajagrafiikan etsintä ja muokkaus |
 |       | 1      | pelaajien piirtäminen seisomassa |
-| yht.  | 22,5   |
+|       | 3      | grafiikkojen vaihto, refaktorointia |
+| yht.  | 25,5   |
