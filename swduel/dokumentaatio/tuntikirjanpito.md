@@ -19,4 +19,5 @@
 | 29.3. | 1      | pelaajagrafiikan etsintä ja muokkaus |
 |       | 1      | pelaajien piirtäminen seisomassa |
 |       | 3      | grafiikkojen vaihto, refaktorointia |
+|       | 1      | pelaajien liikkumisen ensiaskeleet |
 | yht.  | 25,5   |

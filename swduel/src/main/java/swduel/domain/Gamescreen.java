@@ -96,8 +96,6 @@ public class Gamescreen {
     }
 
     private void drawPlayer(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file) {
-        System.out.println("Drawing image of player " + i + "  width: " + width + "  height: " + height);
-        System.out.println("Player x: " + player.getX() + "  Player y: " + player.getY());
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int pixel = file.getArgb(x, y + i * height);

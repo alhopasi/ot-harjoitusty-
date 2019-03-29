@@ -2,8 +2,6 @@ package swduel.domain;
 
 public class Player {
 
-//   private Weapon weapon;
-    private int score;
     private int x;
     private int y;
     private int height;
@@ -31,14 +29,6 @@ public class Player {
     
     public void setY(int y) {
         this.y = y;
-    }
-    
-    public int getScore() {
-        return this.score;
-    }
-    
-    public void setScore(int score) {
-        this.score = score;
     }
     
     public int getHeight() {

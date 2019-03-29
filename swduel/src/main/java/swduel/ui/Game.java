@@ -8,16 +8,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import swduel.domain.ActionHandler;
 import swduel.domain.Gamescreen;
 import swduel.domain.Logic;
 
 public class Game {
 
-    Logic logic;
-    Gamescreen gamescreen;
-    Canvas canvas;
-    Stage stage;
-    Scene menuScene;
+    private Logic logic;
+    private Gamescreen gamescreen;
+    private Canvas canvas;
+    private Stage stage;
+    private Scene menuScene;
+    private Scene gameScene;
 
     public Game(Stage stage, Scene menuScene) {
         this.stage = stage;
@@ -29,9 +31,7 @@ public class Game {
         BorderPane window = new BorderPane();
         window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         window.setCenter(canvas);
-        Scene gameScene = new Scene(window);
-
-        addKeyHandler(gameScene);
+        gameScene = new Scene(window);
 
         return gameScene;
     }
@@ -39,20 +39,8 @@ public class Game {
     public void initGame(String arena) {
         logic = new Logic(arena);
         gamescreen = new Gamescreen(logic, canvas);
-    }
-
-    private void exitGame() {
-        gamescreen.stopDrawing();
-        logic = null;
-        gamescreen = null;
-    }
-
-    private void addKeyHandler(Scene gameScene) {
-        gameScene.setOnKeyPressed((event) -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                stage.setScene(menuScene);
-                exitGame();
-            }
-        });
+        
+        ActionHandler actionHandler = new ActionHandler(stage, gameScene, menuScene, logic, gamescreen);
+        // addKeyHandler(gameScene);
     }
 }

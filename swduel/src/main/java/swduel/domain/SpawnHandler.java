@@ -47,7 +47,6 @@ public class SpawnHandler {
     }
 
     private boolean randomYAndLevel(Player player) {
-        System.out.println(player);
         int randomY = new Random().nextInt(arena.getHeight() - 2) + 1;
         int checkForLoop = 0;
         while (arena.getTile(randomY, player.getX()) != 0 && arena.getTile(randomY - 1, player.getX()) != 0) {

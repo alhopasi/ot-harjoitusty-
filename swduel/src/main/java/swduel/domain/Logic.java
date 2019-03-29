@@ -28,4 +28,14 @@ public class Logic {
     public List<Player> getPlayers() {
         return this.players;
     }
+    
+    public void movePlayer(Player player, String direction) {
+        int newX = 0;
+        if (direction.equals("left")) {
+            newX = -5;
+        } else {
+            newX = 5;
+        }
+        player.setX(player.getX() + newX);
+    }
 }
