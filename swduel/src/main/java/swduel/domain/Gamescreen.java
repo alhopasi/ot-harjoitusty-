@@ -98,6 +98,7 @@ public class Gamescreen {
     private void drawPlayer(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
+//                drawPixel(pixelWriter, i, player, width, height, file, x, y);
                 int pixel = file.getArgb(x, y + i * height);
 
                 if ((pixel >> 24) == 0x00) {
@@ -106,13 +107,31 @@ public class Gamescreen {
                 Color color = file.getColor(x, y + i * height);
 
                 int drawX = player.getX() + x;
+                if (player.getFacing() == 0) {
+                    drawX = player.getX() - x + 32;
+                }
+                
                 int drawY = player.getY() + y;
 
                 pixelWriter.setColor(drawX, drawY - height, color);
             }
         }
     }
-
+    
+//    private void drawPixel(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file, int x, int y) {
+//                        int pixel = file.getArgb(x, y + i * height);
+//
+//                if ((pixel >> 24) == 0x00) {
+//                    return;
+//                }
+//                Color color = file.getColor(x, y + i * height);
+//
+//                int drawX = player.getX() + x;
+//                int drawY = player.getY() + y;
+//
+//                pixelWriter.setColor(drawX, drawY - height, color);
+//    }
+    
     private void drawBackground(PixelWriter pixelWriter) {
         for (int y = 0; y < canvas.getHeight(); y++) {
             for (int x = 0; x < canvas.getWidth(); x++) {

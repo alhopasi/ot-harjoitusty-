@@ -24,7 +24,7 @@ public class SpawnHandler {
         }
 
         player.setX(player.getX() * 32);
-        player.setY(player.getY() * 32);
+        player.setY(player.getY() * 32 + 31);
     }
 
     private boolean randomXLocation(Player player) {
@@ -64,7 +64,7 @@ public class SpawnHandler {
     private void movePlayerToFloor(Player player) {
         int x = player.getX();
         int y = player.getY();
-        if (arena.getTile(y, x) == 0) {
+        if (arena.getTile(y + 1, x) == 0) {
             player.setY(y + 1);
             movePlayerToFloor(player);
         }

@@ -20,6 +20,7 @@ public class Game {
     private Stage stage;
     private Scene menuScene;
     private Scene gameScene;
+    private ActionHandler actionHandler;
 
     public Game(Stage stage, Scene menuScene) {
         this.stage = stage;
@@ -40,7 +41,7 @@ public class Game {
         logic = new Logic(arena);
         gamescreen = new Gamescreen(logic, canvas);
         
-        ActionHandler actionHandler = new ActionHandler(stage, gameScene, menuScene, logic, gamescreen);
-        // addKeyHandler(gameScene);
+        actionHandler = null;
+        actionHandler = new ActionHandler(stage, gameScene, menuScene, logic, gamescreen);
     }
 }

@@ -20,4 +20,7 @@
 |       | 1      | pelaajien piirtäminen seisomassa |
 |       | 3      | grafiikkojen vaihto, refaktorointia |
 |       | 1      | pelaajien liikkumisen ensiaskeleet |
-| yht.  | 25,5   |
+|       | 0,5    | pelin tekemiseen javafx:llä tutustumista netissä |
+|       | 2      | seinien törmäystarkistukset, painovoima, liikkumisen viilausta, katsesuunnan piirto |
+|       | 6      | seinien törmäystarkistukset uusiksi - toimiviksi, pieniä bugikorjauksia |
+| yht.  | 35     |

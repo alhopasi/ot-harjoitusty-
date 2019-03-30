@@ -22,6 +22,9 @@ public class Arena {
     }
     
     public int getTile(int y, int x) {
+        if (y < 0 || x < 0 || y >= height || x >= width) {
+            return -1;
+        }
         return arena[y][x];
     }
 
