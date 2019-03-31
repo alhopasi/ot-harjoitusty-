@@ -54,38 +54,42 @@ public class ActionHandler {
                 double elapsedTime = (present - before) / 1_000_000_000.0;
                 before = present;
 
-//                if (logic.getGameEnded()) {
-//            		return;
-//            	}
-                if (pressedKeys.getOrDefault(KeyCode.LEFT, false)) {
-                    logic.getPlayers().get(1).addVelocity(-30, 0);
-                    logic.getPlayers().get(1).setFacing(0);
-                }
-                if (pressedKeys.getOrDefault(KeyCode.RIGHT, false)) {
-                    logic.getPlayers().get(1).addVelocity(30, 0);
-                    logic.getPlayers().get(1).setFacing(1);
-                }
-                if (pressedKeys.getOrDefault(KeyCode.CONTROL, false)) {
-                    logic.getPlayers().get(1).addVelocity(0, -30);
-                }
-                if (pressedKeys.getOrDefault(KeyCode.A, false)) {
-                    logic.getPlayers().get(0).addVelocity(-30, 0);
-                    logic.getPlayers().get(0).setFacing(0);
-                }
-                if (pressedKeys.getOrDefault(KeyCode.D, false)) {
-                    logic.getPlayers().get(0).addVelocity(30, 0);
-                    logic.getPlayers().get(0).setFacing(1);
-                }
-                if (pressedKeys.getOrDefault(KeyCode.SPACE, false)) {
-                    logic.getPlayers().get(0).addVelocity(0, -30);
-                }
+//                if (logic.getGameEnded()) { return; }
+                
+                handleMovementKeys();
 
                 logic.updateAll(elapsedTime);
-
             }
         };
 
         animationTimer.start();
     }
 
+    private void handleMovementKeys() {
+        if (pressedKeys.getOrDefault(KeyCode.LEFT, false)) {
+            handleMovementAndFacing(1, -30, 0, 0);
+        }
+        if (pressedKeys.getOrDefault(KeyCode.RIGHT, false)) {
+            handleMovementAndFacing(1, 30, 0, 1);
+        }
+        if (pressedKeys.getOrDefault(KeyCode.CONTROL, false)) {
+            handleMovementAndFacing(1, 0, -30, -1);
+        }
+        if (pressedKeys.getOrDefault(KeyCode.A, false)) {
+            handleMovementAndFacing(0, -30, 0, 0);
+        }
+        if (pressedKeys.getOrDefault(KeyCode.D, false)) {
+            handleMovementAndFacing(0, 30, 0, 1);
+        }
+        if (pressedKeys.getOrDefault(KeyCode.SPACE, false)) {
+            handleMovementAndFacing(0, 0, 30, -1);
+        }
+    }
+    
+    private void handleMovementAndFacing(int player, int velocityX, int velocityY, int facing) {
+        logic.getPlayers().get(player).addVelocity(velocityX, velocityY);
+        if (facing != -1) {
+            logic.getPlayers().get(player).setFacing(facing);
+        }
+    }
 }

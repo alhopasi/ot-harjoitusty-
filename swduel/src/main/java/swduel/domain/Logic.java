@@ -39,7 +39,6 @@ public class Logic {
             wallCollisionHandler.checkIfInsideWall(player);
             gravity(player);
         }
-
     }
 
     private void slowDown(Player player) {

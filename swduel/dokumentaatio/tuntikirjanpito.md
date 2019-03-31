@@ -22,5 +22,6 @@
 |       | 1      | pelaajien liikkumisen ensiaskeleet |
 |       | 0,5    | pelin tekemiseen javafx:llä tutustumista netissä |
 |       | 2      | seinien törmäystarkistukset, painovoima, liikkumisen viilausta, katsesuunnan piirto |
-|       | 6      | seinien törmäystarkistukset uusiksi - toimiviksi, pieniä bugikorjauksia |
-| yht.  | 35     |
+| 30.3. | 6      | seinien törmäystarkistukset uusiksi - toimiviksi, pieniä bugikorjauksia |
+| 31.3. | 0,5    | refaktorointia |
+| yht.  | 35,5   |
