@@ -82,7 +82,7 @@ public class ActionHandler {
             handleMovementAndFacing(0, 30, 0, 1);
         }
         if (pressedKeys.getOrDefault(KeyCode.SPACE, false)) {
-            handleMovementAndFacing(0, 0, 30, -1);
+            handleMovementAndFacing(0, 0, -30, -1);
         }
     }
     

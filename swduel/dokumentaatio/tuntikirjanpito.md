@@ -11,7 +11,7 @@
 |       | 1      | pelin piirtämisen alkuaskeleita |
 | 22.3. | 1      | areenan luominen tiedostosta |
 |       | 2      | areenan piirtäminen, pientä refaktorointia |
-| 23.3. | 0,5    | refaktorointia,  |
+| 23.3. | 0,5    | refaktorointia  |
 |       | 0,5    | tuki monelle areenalle, areenoiden valinta valikosta |
 |       | 2      | bugin korjausta |
 | 24.3. | 2      | pelaajaolioiden lisäys, ilmestymispaikan arpominen |
@@ -24,4 +24,5 @@
 |       | 2      | seinien törmäystarkistukset, painovoima, liikkumisen viilausta, katsesuunnan piirto |
 | 30.3. | 6      | seinien törmäystarkistukset uusiksi - toimiviksi, pieniä bugikorjauksia |
 | 31.3. | 0,5    | refaktorointia |
-| yht.  | 35,5   |
+| 32.3. | 0,5    | refaktor (korjaus) areenan piirtämiseen |
+| yht.  | 36     |

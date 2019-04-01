@@ -23,6 +23,9 @@ public class Gamescreen {
     private Map<String, PixelReader> images;
     private AnimationTimer drawingTimer;
 
+    private WritableImage arenaImage;
+    private WritableImage arenaBackground;
+
     public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;
         this.arenaHeight = logic.getArena().getHeight() * 32;
@@ -34,6 +37,7 @@ public class Gamescreen {
         this.images = new HashMap<>();
 
         importGraphics();
+        drawArena();
 
         initDrawing();
     }
@@ -73,11 +77,10 @@ public class Gamescreen {
     private void drawAll() {
         WritableImage newScreen = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
         PixelWriter pixelWriter = newScreen.getPixelWriter();
-
-        drawBackground(pixelWriter);
-        drawArena(pixelWriter);
+        
         drawPlayers(pixelWriter);
 
+        drawingTool.drawImage(arenaImage, 0, 0);
         drawingTool.drawImage(newScreen, 0, 0);
     }
 
@@ -98,7 +101,6 @@ public class Gamescreen {
     private void drawPlayer(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-//                drawPixel(pixelWriter, i, player, width, height, file, x, y);
                 int pixel = file.getArgb(x, y + i * height);
 
                 if ((pixel >> 24) == 0x00) {
@@ -110,28 +112,14 @@ public class Gamescreen {
                 if (player.getFacing() == 0) {
                     drawX = player.getX() - x + 32;
                 }
-                
+
                 int drawY = player.getY() + y;
 
                 pixelWriter.setColor(drawX, drawY - height, color);
             }
         }
     }
-    
-//    private void drawPixel(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file, int x, int y) {
-//                        int pixel = file.getArgb(x, y + i * height);
-//
-//                if ((pixel >> 24) == 0x00) {
-//                    return;
-//                }
-//                Color color = file.getColor(x, y + i * height);
-//
-//                int drawX = player.getX() + x;
-//                int drawY = player.getY() + y;
-//
-//                pixelWriter.setColor(drawX, drawY - height, color);
-//    }
-    
+
     private void drawBackground(PixelWriter pixelWriter) {
         for (int y = 0; y < canvas.getHeight(); y++) {
             for (int x = 0; x < canvas.getWidth(); x++) {
@@ -140,7 +128,11 @@ public class Gamescreen {
         }
     }
 
-    private void drawArena(PixelWriter pixelWriter) {
+    private void drawArena() {
+        arenaImage = new WritableImage(arenaWidth, arenaHeight);
+        PixelWriter pixelWriter = arenaImage.getPixelWriter();
+        drawBackground(pixelWriter);
+        
         for (int y = 0; y < logic.getArena().getHeight(); y++) {
             for (int x = 0; x < logic.getArena().getWidth(); x++) {
                 if (logic.getArena().getTile(y, x) != 0) {
