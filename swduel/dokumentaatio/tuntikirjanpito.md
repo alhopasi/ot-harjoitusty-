@@ -25,4 +25,6 @@
 | 30.3. | 6      | seinien törmäystarkistukset uusiksi - toimiviksi, pieniä bugikorjauksia |
 | 31.3. | 0,5    | refaktorointia |
 | 32.3. | 0,5    | refaktor (korjaus) areenan piirtämiseen |
-| yht.  | 36     |
+| 4.4   | 2,5    | testit areenalle, logiikalle ja spawnHandlerille |
+|       | 2,5    | luokkakaavion tekoa, arkkitehtuurikuvauksen päivitys |
+| yht.  | 41     |

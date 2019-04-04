@@ -1,11 +1,13 @@
 # Arkkitehtuurikuvaus
 
+![Luokkakaavio](kuvat/luokkakaavio.png "Luokkakaavio")
+
 ## Rakenne
 
 Koodin rakenne on seuraava:
 SwduelUi -> TitleMenu
 TitleMenu -> Game
-Game -> Logic / GameScreen
+Game -> Logic / GameScreen / ActionHandler
 Logic -> Kaikki loput
 
 ## Käyttöliittymä
@@ -15,31 +17,33 @@ Käyttöliittymä sisältää kaksi erillistä näkymää
 - valikkonäkymä
 - pelinäkymä
 
-molemmat ovat toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä, eli sijoitettu sovelluksen stageen. Käyttöliittymä on luokassa swduel.ui.SwduelUi.
+molemmat ovat toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä, eli sijoitettu sovelluksen stageen. Käyttöliittymä on pakkauksessa swduel.ui.
 
 ## Sovelluslogiikka
 
 Löytyy pakkauksesta swduel.domain
 
-Valikkonäkymän sovelluslogiikasta huolehtii luokka TitleMenu.
+Valikkonäkymän logiikasta huolehtii luokka TitleMenu (osa UI:ta).
 
 Pelinäkymän sovelluslogiikasta huolehtii luokka Game, jolle annetaan parametrina pelattavan areenan nimi.
 
 Luokka Game huolehtii peliin syötettävistä parametreistä.
-- Kutsuu luokkaa Logic, joka huolehtii pelin logiikasta.
-- Kutsuu luokkaa GameScreen, joka huolehtii kaiken piirtämisestä. Parametriksi logic.
+- Luokka Logic, joka huolehtii pelin logiikasta.
+- Luokka GameScreen, joka huolehtii kaiken piirtämisestä.
+- Luokka ActionHandler, joka huolehtii näppäinpainallusten toiminnallisuudesta.
 
 Luokka Logic:
-- Konstruktorissa kutsuu GameMapiä, joka rakentaa kartan annetun areenan nimen perusteella.
+- Konstruktorissa kutsuu Arenaa, joka rakentaa kartan annetun areenan nimen perusteella.
 - Pelin päivittäminen
-- Painetut näppäimet -> mitä tapahtuu
+- Pelaajien liikkumisen tarkistukset
+- Painovoima ja pelaajien liikkeen pysäytys
 - Ammusten luominen ja liikuttaminen ja kesto
-- Tarkasta osumat ammuksista
+- Tarkastaa osumat ammuksista
 - Pelaajaan osuminen -> Luo pelaajat uudestaan -> valitsee aseet.
 
 Luokka GameScreen:
-- Piirtää pelialueen ja päivittää sitä (40 fps?)
+- Piirtää pelialueen ja päivittää sitä (60 fps)
 - Tausta (vaalensininen?)
-- Blokit
+- Areenan ruudut
 - Pelaajat
 - Esineet (ammukset)

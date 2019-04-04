@@ -18,13 +18,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import swduel.domain.Gamescreen;
-import swduel.domain.Logic;
 
 public class GameMenu {
 
-    private Logic logic;
-    private Gamescreen gamescreen;
     private String version;
     private List<String> arenas;
     private int arenaNumber;

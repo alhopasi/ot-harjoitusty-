@@ -1,4 +1,4 @@
-package swduel.domain;
+package swduel.ui;
 
 import java.io.File;
 import java.util.HashMap;
@@ -12,6 +12,8 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import swduel.domain.Logic;
+import swduel.domain.Player;
 
 public class Gamescreen {
 

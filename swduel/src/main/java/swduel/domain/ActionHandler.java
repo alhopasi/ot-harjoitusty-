@@ -1,5 +1,6 @@
 package swduel.domain;
 
+import swduel.ui.Gamescreen;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.animation.AnimationTimer;

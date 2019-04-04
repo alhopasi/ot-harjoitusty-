@@ -47,10 +47,10 @@ public class Logic {
         if (velocityX >= -15 && velocityX <= 15) {
             player.setVelocity(0, velocityY);
         }
-        if (velocityX < -10) {
+        if (velocityX < -15) {
             player.addVelocity(15, 0);
         }
-        if (velocityX > 10) {
+        if (velocityX > 15) {
             player.addVelocity(-15, 0);
         }
     }
