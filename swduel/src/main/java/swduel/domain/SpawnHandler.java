@@ -18,16 +18,15 @@ public class SpawnHandler {
         while (!goodLocation) {
             player.setX(-1);
             player.setY(-1);
-            if (randomXLocation(player)) {
-                goodLocation = randomYAndLevel(player);
-            }
+            randomXLocation(player);
+            goodLocation = randomYAndLevel(player);
         }
 
         player.setX(player.getX() * 32);
         player.setY(player.getY() * 32 + 31);
     }
 
-    private boolean randomXLocation(Player player) {
+    private void randomXLocation(Player player) {
         int halfArenaSize = arena.getWidth() / 2 - 1;
         int newX;
         while (true) {
@@ -43,7 +42,6 @@ public class SpawnHandler {
             }
         }
         player.setX(newX);
-        return true;
     }
 
     private boolean randomYAndLevel(Player player) {

@@ -24,7 +24,6 @@ public class Gamescreen {
     private AnimationTimer drawingTimer;
 
     private WritableImage arenaImage;
-    private WritableImage arenaBackground;
 
     public Gamescreen(Logic logic, Canvas canvas) {
         this.logic = logic;

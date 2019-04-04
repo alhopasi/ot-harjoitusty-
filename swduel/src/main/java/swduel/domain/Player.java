@@ -2,8 +2,8 @@ package swduel.domain;
 
 public class Player {
 
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int height;
     private int width;
     private double velocityX;
@@ -56,8 +56,6 @@ public class Player {
     public void update(double time) {
         x += velocityX * time;
         y += velocityY * time;
-//        System.out.println("veloY: " + velocityY + "  time: " + time);
-//        System.out.println("new y: " + velocityY * time);
     }
     
     public int getX() {
@@ -82,6 +80,10 @@ public class Player {
     
     public int getWidth() {
         return this.width;
+    }
+    
+    public double getMaxVelocity() {
+        return this.maxVelocity;
     }
     
     @Override

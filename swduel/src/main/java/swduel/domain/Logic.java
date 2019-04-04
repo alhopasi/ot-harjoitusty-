@@ -44,7 +44,7 @@ public class Logic {
     private void slowDown(Player player) {
         double velocityX = player.getVelocityX();
         double velocityY = player.getVelocityY();
-        if (velocityX >= -10 && velocityX <= 10) {
+        if (velocityX >= -15 && velocityX <= 15) {
             player.setVelocity(0, velocityY);
         }
         if (velocityX < -10) {

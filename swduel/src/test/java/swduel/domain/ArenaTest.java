@@ -37,5 +37,13 @@ import static org.junit.Assert.*;
     public void correctHeight() {
         assertEquals(6, arena.getHeight());
     }
+    
+    @Test
+    public void getTileOutsideAreaReturnsNegative() {
+        assertEquals(-1, arena.getTile(-2, 2));
+        assertEquals(-1, arena.getTile(2, -2));
+        assertEquals(-1, arena.getTile(2000, 2));
+        assertEquals(-1, arena.getTile(2, 2000));
+    }
      
 }
