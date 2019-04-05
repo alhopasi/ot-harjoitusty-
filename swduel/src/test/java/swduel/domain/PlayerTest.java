@@ -78,7 +78,7 @@ public class PlayerTest {
     public void playerStringPrints() {
         player.setX(0);
         player.setY(0);
-        assertEquals("(0:0)", player.toString());
+        assertEquals("(0.0:0.0)  0.0:0.0", player.toString());
     }
     
     

@@ -2,6 +2,10 @@ package swduel.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
+import swduel.domain.weapon.Blaster;
+import swduel.domain.weapon.Lightsaber;
+import swduel.domain.weapon.Weapon;
 
 public class Logic {
 
@@ -9,6 +13,7 @@ public class Logic {
     private List<Player> players;
     private SpawnHandler spawner;
     private WallCollisionHandler wallCollisionHandler;
+    TreeSet<Weapon> weapons;
 
     public Logic(String arenaFile) {
         this.arena = new Arena(arenaFile);
@@ -16,11 +21,14 @@ public class Logic {
         spawner = new SpawnHandler(players, arena);
         wallCollisionHandler = new WallCollisionHandler(arena);
 
+        weapons = generateWeapons();
+
         players.add(new Player());
         players.add(new Player());
         players.get(0).setFacing(1);
         for (Player player : players) {
             spawner.randomPlayerLocation(player);
+            player.setWeapon(weapons.first());
         }
     }
 
@@ -66,5 +74,12 @@ public class Logic {
         } else {
             player.addVelocity(0, 15);
         }
+    }
+
+    private TreeSet<Weapon> generateWeapons() {
+        TreeSet<Weapon> newWeapons = new TreeSet<>();
+        newWeapons.add(new Blaster());
+        newWeapons.add(new Lightsaber());
+        return newWeapons;
     }
 }

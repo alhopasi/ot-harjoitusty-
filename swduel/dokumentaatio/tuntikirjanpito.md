@@ -27,4 +27,5 @@
 | 32.3. | 0,5    | refaktor (korjaus) areenan piirtämiseen |
 | 4.4   | 2,5    | testit areenalle, logiikalle ja spawnHandlerille |
 |       | 2,5    | luokkakaavion tekoa, arkkitehtuurikuvauksen päivitys |
-| yht.  | 41     |
+| 5.4   | 2,5    | aseiden ja spritejen lisäys, pientä bugikorjausta |
+| yht.  | 43,5   |
