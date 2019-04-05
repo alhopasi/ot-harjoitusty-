@@ -1,6 +1,6 @@
 # Arkkitehtuurikuvaus
 
-![Luokkakaavio](kuvat/luokkakaavio.png "Luokkakaavio")
+![Luokkakaavio](kuvat/luokkakaavio.jpg "Luokkakaavio")
 
 ## Rakenne
 
