@@ -55,10 +55,9 @@ public class ActionHandler {
                 double elapsedTime = (present - before) / 1_000_000_000.0;
                 before = present;
 
-//                if (logic.getGameEnded()) { return; }
-                
+                if (logic.getGameFinished()) { return; }
                 handleMovementKeys();
-
+                handleAttacks();
                 logic.updateAll(elapsedTime);
             }
         };
@@ -82,11 +81,20 @@ public class ActionHandler {
         if (pressedKeys.getOrDefault(KeyCode.D, false)) {
             handleMovementAndFacing(0, 30, 0, 1);
         }
-        if (pressedKeys.getOrDefault(KeyCode.SPACE, false)) {
+        if (pressedKeys.getOrDefault(KeyCode.TAB, false)) {
             handleMovementAndFacing(0, 0, -30, -1);
         }
     }
-    
+
+    private void handleAttacks() {
+        if (pressedKeys.getOrDefault(KeyCode.SHIFT, false)) {
+            logic.attack(logic.getPlayers().get(1));
+        }
+        if (pressedKeys.getOrDefault(KeyCode.Q, false)) {
+            logic.attack(logic.getPlayers().get(0));
+        }
+    }
+
     private void handleMovementAndFacing(int player, int velocityX, int velocityY, int facing) {
         logic.getPlayers().get(player).addVelocity(velocityX, velocityY);
         if (facing != -1) {

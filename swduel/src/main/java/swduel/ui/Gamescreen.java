@@ -14,6 +14,8 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import swduel.domain.Logic;
 import swduel.domain.Player;
+import swduel.domain.Sprite;
+import swduel.domain.ammunition.Ammunition;
 
 public class Gamescreen {
 
@@ -78,8 +80,9 @@ public class Gamescreen {
     private void drawAll() {
         WritableImage newScreen = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
         PixelWriter pixelWriter = newScreen.getPixelWriter();
-        
+
         drawPlayers(pixelWriter);
+        drawAmmunition(pixelWriter);
 
         drawingTool.drawImage(arenaImage, 0, 0);
         drawingTool.drawImage(newScreen, 0, 0);
@@ -89,35 +92,49 @@ public class Gamescreen {
         List<Player> players = logic.getPlayers();
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
-            int height = player.getHeight();
-            int width = player.getWidth();
 
             PixelReader file;
             file = images.getOrDefault("players", images.get("0"));
 
-            drawPlayer(pixelWriter, i, player, width, height, file);
+            drawSprite(pixelWriter, i, player, file);
         }
     }
 
-    private void drawPlayer(PixelWriter pixelWriter, int i, Player player, int width, int height, PixelReader file) {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int pixel = file.getArgb(x, y + i * height);
+    private void drawAmmunition(PixelWriter pixelWriter) {
+        List<Ammunition> ammunition = logic.getAmmunition();
+        for (int i = 0; i < ammunition.size(); i++) {
+            Ammunition ammo = ammunition.get(i);
 
-                if ((pixel >> 24) == 0x00) {
-                    continue;
+            PixelReader file;
+            file = images.getOrDefault(ammo.getFileName(), images.get("0"));
+            drawSprite(pixelWriter, 0, ammo, file);
+        }
+    }
+
+    private void drawSprite(PixelWriter pixelWriter, int i, Sprite sprite, PixelReader file) {
+        try {
+            for (int y = 0; y < sprite.getHeight(); y++) {
+                for (int x = 0; x < sprite.getWidth(); x++) {
+
+                    int pixel = file.getArgb(x, y + i * sprite.getHeight());
+
+                    if ((pixel >> 24) == 0x00) {
+                        continue;
+                    }
+                    Color color = file.getColor(x, y + i * sprite.getHeight());
+
+                    int drawX = sprite.getX() + x;
+                    if (sprite.getFacing() == 0) {
+                        drawX = sprite.getX() - x + sprite.getWidth();
+                    }
+
+                    int drawY = sprite.getY() + y - sprite.getHeight();
+
+                    pixelWriter.setColor(drawX, drawY, color);
                 }
-                Color color = file.getColor(x, y + i * height);
-
-                int drawX = player.getX() + x;
-                if (player.getFacing() == 0) {
-                    drawX = player.getX() - x + 32;
-                }
-
-                int drawY = player.getY() + y;
-
-                pixelWriter.setColor(drawX, drawY - height, color);
             }
+        } catch (Exception e) {
+            System.out.println("virhe piirtämisessä " + e.getMessage());
         }
     }
 
@@ -133,7 +150,7 @@ public class Gamescreen {
         arenaImage = new WritableImage(arenaWidth, arenaHeight);
         PixelWriter pixelWriter = arenaImage.getPixelWriter();
         drawBackground(pixelWriter);
-        
+
         for (int y = 0; y < logic.getArena().getHeight(); y++) {
             for (int x = 0; x < logic.getArena().getWidth(); x++) {
                 if (logic.getArena().getTile(y, x) != 0) {

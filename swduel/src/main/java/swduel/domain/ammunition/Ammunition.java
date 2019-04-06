@@ -4,18 +4,18 @@ import swduel.domain.Sprite;
 
 public abstract class Ammunition extends Sprite {
 
-    private String name;
+    private String fileName;
     private double aliveTime;
 
-    public Ammunition(int x, int y, int width, int height, String name, double initialSpeed, double aliveTime) {
+    public Ammunition(int x, int y, int width, int height, String fileName, double initialSpeed, double aliveTime) {
         super(x, y, height, width);
-        this.name = name;
+        this.fileName = fileName;
         super.setVelocity(initialSpeed, 0);
         this.aliveTime = aliveTime;
     }
-
-    public String getName() {
-        return this.name;
+    
+    public String getFileName() {
+        return this.fileName;
     }
 
     public double getAliveTime() {
@@ -27,9 +27,9 @@ public abstract class Ammunition extends Sprite {
         super.setX(super.getX() + super.getVelocityX() * time);
         this.aliveTime -= time;
     }
-    
+
     @Override
     public String toString() {
-        return super.toString() + "  " + this.name + "  " + this.aliveTime;
+        return super.toString() + "  " + this.fileName + "  " + this.aliveTime;
     }
 }

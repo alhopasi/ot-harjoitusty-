@@ -71,8 +71,8 @@ public class GameMenu {
                 + "eliminate your opponent until you win.\n"
                 + "          Player 1 keys:    Player 2 keys:\n"
                 + "Movement: A, D              Left Arrow, Right Arrow\n"
-                + "Jetpack:  Space             Right Ctrl\n"
-                + "Attack:   Left Shift        Right Shift";
+                + "Jetpack:  TAB               Right Ctrl\n"
+                + "Attack:   Q                 Right Shift";
         Label infoLabel = createLabel(infoString, 16);
 
         Label versionLabel = createLabel("Version " + version, 16);

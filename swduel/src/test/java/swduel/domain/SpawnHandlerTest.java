@@ -17,8 +17,8 @@ public class SpawnHandlerTest {
     @Before
     public void setUp() {
         arena = new Arena("testArena2");
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new Player(0);
+        player2 = new Player(1);
         List<Player> players = new ArrayList<>(Arrays.asList(player1, player2));
         s = new SpawnHandler(players, arena);
     }
