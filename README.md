@@ -14,7 +14,7 @@ Sovellus on peli, jossa kaksi pelaajaa taistelee toisiaan vastaan. Pelihahmoilla
 
 ## Komentorivikomennot
 
-Ajaaksesi sovelluksen, suorita juurihakemistossa *swduel/* komento: *mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi* tai käytä NetBeansia.
+Ajaaksesi sovelluksen, suorita juurihakemistossa `swduel/` komento: `mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi` tai käytä NetBeansia.
 
 Helsingin yliopiston kurssin **Ohjelmistotekniikka** harjoitustyö.
 
