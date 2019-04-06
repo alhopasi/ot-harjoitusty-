@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeSet;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.weapon.Blaster;
+import swduel.domain.weapon.BlasterRifle;
 import swduel.domain.weapon.Lightsaber;
 import swduel.domain.weapon.Weapon;
 
@@ -127,8 +128,10 @@ public class Logic {
     
     private void setWeapon(Player player, String weapon) {
         Weapon newWeapon;
-        if (weapon.equals("blaster")) {
+        if (weapon.equals("Blaster")) {
             newWeapon = new Blaster();
+        } else if (weapon.equals("Blaster Rifle")) {
+            newWeapon = new BlasterRifle();
         } else {
             newWeapon = new Lightsaber();
         }
@@ -136,32 +139,11 @@ public class Logic {
     }
 
     private void createAmmunition(Player player) {
-//        Ammunition playerAmmo = player.getWeapon().getAmmunition();
-
         int facing = player.getFacing();
         int x = player.getX();
         int y = player.getY();
         
         Ammunition newAmmo = player.getWeapon().getNewAmmo(x, y, facing);
-//        int ammoX = player.getX();
-//        if (facing == 1) {
-//            ammoX += (player.getWidth() + 10);
-//        } else {
-//            ammoX -= (playerAmmo.getWidth() + 10);
-//        }
-//        System.out.println("playerY: " + player.getY() + "  playerHeight: " + player.getHeight());
-//        System.out.println("height * 0.66: " + player.getHeight() * 0.66 + "  ammoHeight: " + playerAmmo.getHeight() + "  /2: " + playerAmmo.getHeight() / 2);
-//        
-//        int ammoY = (player.getY() - (int) (player.getHeight() * 0.66)) + playerAmmo.getHeight() / 2;
-//        System.out.println("ammoy: " + ammoY);
-//        String name = playerAmmo.getFileName();
-//        double initialSpeed = player.getWeapon().getAmmunitionSpeed();
-//        if (facing == 0) {
-//            initialSpeed *= -1;
-//        }
-//        
-//        Ammunition newAmmo = new Ammunition(ammoX, ammoY, playerAmmo.getWidth(), playerAmmo.getHeight(), name, initialSpeed, playerAmmo.getAliveTime());
-//        newAmmo.setFacing(facing);
         shotsFired.add(newAmmo);
     }
 
@@ -194,6 +176,7 @@ public class Logic {
 
     private TreeSet<Weapon> generateWeapons() {
         TreeSet<Weapon> newWeapons = new TreeSet<>();
+        newWeapons.add(new BlasterRifle());
         newWeapons.add(new Blaster());
         newWeapons.add(new Lightsaber());
         return newWeapons;
