@@ -72,7 +72,7 @@ public class SpawnHandler {
         if (player.getX() == -1) {
             return xToCheck;
         }
-        if (player.getX() / 32 <= halfArenaSize + 1) {
+        if (player.getX() / 32 <= halfArenaSize) {
             xToCheck += halfArenaSize;
             if (xToCheck < player.getX() / 32 + halfArenaSize) {
                 return -1;
