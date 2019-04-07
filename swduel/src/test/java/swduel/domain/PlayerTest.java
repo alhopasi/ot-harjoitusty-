@@ -73,14 +73,4 @@ public class PlayerTest {
         assertEquals(30, player.getX());
         assertEquals(5, player.getY());
     }
-    
-    @Test
-    public void playerStringPrints() {
-        player.setX(0);
-        player.setY(0);
-        assertEquals("(0.0:0.0)  0.0:0.0", player.toString());
-    }
-    
-    
-    
 }

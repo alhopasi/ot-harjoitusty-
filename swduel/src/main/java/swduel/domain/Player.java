@@ -14,23 +14,25 @@ public class Player extends Sprite {
         this.id = id;
         this.maxVelocity = 300;
     }
-    
+
     public int getId() {
         return this.id;
     }
-    
+
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
-    
+
     public Weapon getWeapon() {
         return this.weapon;
     }
-    
+
     @Override
     public void update(double time) {
         super.update(time);
-        weapon.lowerCooldown(time);
+        if (weapon != null) {
+            weapon.lowerCooldown(time);
+        }
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Player extends Sprite {
     public double getMaxVelocity() {
         return this.maxVelocity;
     }
-    
+
     @Override
     public String toString() {
         return super.toString() + "  weapon: " + weapon;
