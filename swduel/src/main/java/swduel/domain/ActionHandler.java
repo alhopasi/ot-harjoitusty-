@@ -55,7 +55,9 @@ public class ActionHandler {
                 double elapsedTime = (present - before) / 1_000_000_000.0;
                 before = present;
 
-                if (logic.getGameFinished()) { return; }
+                if (logic.getGameFinished()) {
+                    return;
+                }
                 handleMovementKeys();
                 handleAttacks();
                 logic.updateAll(elapsedTime);

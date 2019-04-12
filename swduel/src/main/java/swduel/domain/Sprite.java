@@ -75,7 +75,6 @@ public abstract class Sprite {
 
     public boolean collides(Sprite other) {
         if (this == other) {
-            System.out.println("return");
             return false;
         }
         double myBottom = this.y;

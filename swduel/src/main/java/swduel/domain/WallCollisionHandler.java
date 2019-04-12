@@ -1,5 +1,7 @@
 package swduel.domain;
 
+import swduel.domain.ammunition.Ammunition;
+
 public class WallCollisionHandler {
 
     Arena arena;
@@ -29,6 +31,17 @@ public class WallCollisionHandler {
             }
             break;
         }
+    }
+
+    public boolean checkIfInsideWall(Ammunition ammo) {
+        int swCorner = arena.getTile(ammo.getY() / 32, ammo.getX() / 32);
+        int nwCorner = arena.getTile((ammo.getY() - ammo.getHeight()) / 32, ammo.getX() / 32);
+        int seCorner = arena.getTile(ammo.getY() / 32, (ammo.getX() + ammo.getWidth()) / 32);
+        int neCorner = arena.getTile((ammo.getY() - ammo.getHeight()) / 32, (ammo.getX() + ammo.getWidth()) / 32);
+        if (swCorner != 0 || seCorner != 0 || nwCorner != 0 || neCorner != 0) {
+            return true;
+        }
+        return false;
     }
 
     private boolean checkBottomAndTop(int nwCorner, int neCorner, int swCorner, int seCorner, Player player) {

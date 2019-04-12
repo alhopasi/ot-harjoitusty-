@@ -24,7 +24,7 @@ public abstract class Weapon implements Comparable<Weapon> {
     public String getName() {
         return this.name;
     }
-    
+
     protected Ammunition getAmmo(int x, int y, int facing) {
         System.out.println("Override getAmmo method with new weapon!");
         return null;
@@ -87,10 +87,10 @@ public abstract class Weapon implements Comparable<Weapon> {
         }
         return ammoX;
     }
-    
+
     private int calculateAmmoY(int y, int ammoHeight) {
         int ammoY = y;
-        ammoY = ammoY - (int) (64*0.66) + (int) ammoHeight/2;
+        ammoY = ammoY - (int) (64 * 0.66) + (int) ammoHeight / 2;
         return ammoY;
     }
 }

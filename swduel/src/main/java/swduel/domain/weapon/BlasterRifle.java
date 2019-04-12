@@ -3,10 +3,10 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LaserShot;
 
-public class BlasterRifle extends Weapon{
+public class BlasterRifle extends Weapon {
     
     public BlasterRifle() {
-        super("Blaster Rifle", 150, 3, 8, 2, 2000);
+        super("Blaster Rifle", 150, 5, 8, 2, 2000);
     }
     
     @Override

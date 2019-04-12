@@ -12,6 +12,9 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import swduel.domain.Logic;
 import swduel.domain.Player;
 import swduel.domain.Sprite;
@@ -76,7 +79,7 @@ public class Gamescreen {
             images.put(filename.split("\\.")[0], new Image("file:images/" + filename).getPixelReader());
         }
     }
-
+    
     private void drawAll() {
         WritableImage newScreen = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
         PixelWriter pixelWriter = newScreen.getPixelWriter();
@@ -86,6 +89,46 @@ public class Gamescreen {
 
         drawingTool.drawImage(arenaImage, 0, 0);
         drawingTool.drawImage(newScreen, 0, 0);
+        drawPlayerInfo();
+        if (logic.getGameFinished()) {
+            drawWinnerAndStop();
+        }
+    }
+    
+    private void drawWinnerAndStop() {
+        int winner = 1;
+        if (logic.getPlayers().get(0).getScore() < logic.getPlayers().get(1).getScore()) {
+            winner = 2;
+        }
+        drawingTool.setFont(Font.font("consolas", FontWeight.BOLD, 64));
+        drawingTool.setTextAlign(TextAlignment.CENTER);
+        drawingTool.setFill(Color.RED);
+        if (winner == 2) {
+            drawingTool.setFill(Color.BLUE);
+        }
+        drawingTool.fillText("Player " + winner + " won!", logic.getArena().getWidth() * 32 / 2, logic.getArena().getHeight() * 32 / 2);
+        stopDrawing();
+    }
+
+    private void drawPlayerInfo() {
+        for (int playerNumber = 0; playerNumber < logic.getPlayers().size(); playerNumber++) {
+            Player player = logic.getPlayers().get(playerNumber);
+            String text = player.getWeapon().getName();
+            String text2 = String.valueOf(player.getScore());
+
+            int textX = 64;
+            int textY = 96;
+            drawingTool.setFont(Font.font("consolas", FontWeight.BOLD, 32));
+            drawingTool.setFill(Color.RED);
+            drawingTool.setTextAlign(TextAlignment.LEFT);
+            if (playerNumber == 1) {
+                drawingTool.setFill(Color.BLUE);
+                textX = arenaWidth - 64;
+                drawingTool.setTextAlign(TextAlignment.RIGHT);
+            }
+            drawingTool.fillText(text, textX, textY);
+            drawingTool.fillText(text2, textX, textY + 32);
+        }
     }
 
     private void drawPlayers(PixelWriter pixelWriter) {
@@ -116,26 +159,36 @@ public class Gamescreen {
             for (int y = 0; y < sprite.getHeight(); y++) {
                 for (int x = 0; x < sprite.getWidth(); x++) {
 
-                    int pixel = file.getArgb(x, y + i * sprite.getHeight());
-
-                    if ((pixel >> 24) == 0x00) {
+                    if (pixelIsTransparent(file, x, y, i, sprite)) {
                         continue;
                     }
-                    Color color = file.getColor(x, y + i * sprite.getHeight());
 
-                    int drawX = sprite.getX() + x;
-                    if (sprite.getFacing() == 0) {
-                        drawX = sprite.getX() - x + sprite.getWidth();
-                    }
-
-                    int drawY = sprite.getY() + y - sprite.getHeight();
-
-                    pixelWriter.setColor(drawX, drawY, color);
+                    drawPixel(file, x, y, i, sprite, pixelWriter);
                 }
             }
         } catch (Exception e) {
             System.out.println("virhe piirtämisessä " + e.getMessage());
         }
+    }
+
+    private void drawPixel(PixelReader file, int x, int y, int i, Sprite sprite, PixelWriter pixelWriter) {
+        Color color = file.getColor(x, y + i * sprite.getHeight());
+
+        int drawX = sprite.getX() + x;
+        if (sprite.getFacing() == 0) {
+            drawX = sprite.getX() - x + sprite.getWidth();
+        }
+        int drawY = sprite.getY() + y - sprite.getHeight();
+
+        pixelWriter.setColor(drawX, drawY, color);
+    }
+
+    private boolean pixelIsTransparent(PixelReader file, int x, int y, int i, Sprite sprite) {
+        int pixel = file.getArgb(x, y + i * sprite.getHeight());
+        if ((pixel >> 24) == 0x00) {
+            return true;
+        }
+        return false;
     }
 
     private void drawBackground(PixelWriter pixelWriter) {

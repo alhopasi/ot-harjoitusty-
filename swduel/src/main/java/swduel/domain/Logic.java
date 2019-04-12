@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 import swduel.domain.ammunition.Ammunition;
-import swduel.domain.weapon.Blaster;
+import swduel.domain.weapon.AutoBlaster;
 import swduel.domain.weapon.BlasterRifle;
 import swduel.domain.weapon.Lightsaber;
 import swduel.domain.weapon.Weapon;
@@ -76,33 +76,66 @@ public class Logic {
     private void updateAmmoPosition(double time) {
         Iterator<Ammunition> it = shotsFired.iterator();
         while (it.hasNext()) {
+            if (gameFinished) {
+                return;
+            }
             Ammunition ammo = it.next();
             ammo.update(time);
-            checkArenaBoundaries(it, ammo);
-            if (ammo.getAliveTime() < 0) {
+            if (ammoOutOfTimeOrHitsSomething(ammo)) {
                 it.remove();
                 continue;
             }
-            checkPlayerHits(it, ammo);
+        }
+        checkAmmoHits();
+    }
+
+    private boolean ammoOutOfTimeOrHitsSomething(Ammunition ammo) {
+        if (ammo.getAliveTime() < 0 || checkArenaBoundaries(ammo) || checkPlayerHits(ammo)
+                || wallCollisionHandler.checkIfInsideWall(ammo)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void checkAmmoHits() {
+        boolean hit = false;
+        for (Ammunition ammo : shotsFired) {
+            for (Ammunition other : shotsFired) {
+                if (ammo.collides(other)) {
+                    shotsFired.remove(other);
+                    shotsFired.remove(ammo);
+                    hit = true;
+                    break;
+                }
+            }
+            if (hit) {
+                break;
+            }
+        }
+        if (hit) {
+            checkAmmoHits();
         }
     }
 
-    private void checkArenaBoundaries(Iterator it, Ammunition ammo) {
+    private boolean checkArenaBoundaries(Ammunition ammo) {
         if (ammo.getX() < 0
                 || ammo.getX() + ammo.getWidth() >= arena.getWidth() * 32
                 || ammo.getY() - ammo.getHeight() < 0
                 || ammo.getY() >= arena.getHeight() * 32) {
-            it.remove();
+            return true;
         }
+        return false;
     }
 
-    private void checkPlayerHits(Iterator it, Ammunition ammo) {
+    private boolean checkPlayerHits(Ammunition ammo) {
         for (Player player : players) {
             if (ammo.collides(player)) {
                 handlePlayerHit(player);
-                it.remove();
+                return true;
             }
         }
+        return false;
     }
 
     private void handlePlayerHit(Player player) {
@@ -112,24 +145,23 @@ public class Logic {
         } else {
             winnerId = 0;
         }
-        Weapon nextWeapon = weapons.higher(players.get(winnerId).getWeapon());
-
-        if (nextWeapon == null) {
-            System.out.println("PELI LOPPUI - PELAAJA " + (winnerId + 1) + " VOITTI!");
+        players.get(winnerId).addScore();
+        if (players.get(winnerId).getScore() == weapons.size()) {
             gameFinished = true;
             return;
         }
-        
+        Weapon nextWeapon = weapons.higher(players.get(winnerId).getWeapon());
         setWeapon(players.get(winnerId), nextWeapon.getName());
+
         player.setX(-1);
         player.setY(-1);
         spawner.randomPlayerLocation(player);
     }
-    
+
     private void setWeapon(Player player, String weapon) {
         Weapon newWeapon;
-        if (weapon.equals("Blaster")) {
-            newWeapon = new Blaster();
+        if (weapon.equals("Auto Blaster")) {
+            newWeapon = new AutoBlaster();
         } else if (weapon.equals("Blaster Rifle")) {
             newWeapon = new BlasterRifle();
         } else {
@@ -142,7 +174,7 @@ public class Logic {
         int facing = player.getFacing();
         int x = player.getX();
         int y = player.getY();
-        
+
         Ammunition newAmmo = player.getWeapon().getNewAmmo(x, y, facing);
         shotsFired.add(newAmmo);
     }
@@ -177,7 +209,7 @@ public class Logic {
     private TreeSet<Weapon> generateWeapons() {
         TreeSet<Weapon> newWeapons = new TreeSet<>();
         newWeapons.add(new BlasterRifle());
-        newWeapons.add(new Blaster());
+        newWeapons.add(new AutoBlaster());
         newWeapons.add(new Lightsaber());
         return newWeapons;
     }

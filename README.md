@@ -14,7 +14,13 @@ Sovellus on peli, jossa kaksi pelaajaa taistelee toisiaan vastaan. Pelihahmoilla
 
 ## Komentorivikomennot
 
-Ajaaksesi sovelluksen, suorita juurihakemistossa `swduel/` komento: `mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi` tai käytä NetBeansia.
+Sovelluksen käynnistämiseen tarvitaan juurihakemistoon kansiot `arenas` sekä `images`, joista löytyy tarvittavat tiedostot (ks. github).
+
+Sovellus käynnistyy komennolla:
+`java -jar swduel-1.0-SNAPSHOT.jar`
+
+tai lähdekoodia käyttäen:
+`mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi`
 
 Helsingin yliopiston kurssin **Ohjelmistotekniikka** harjoitustyö.
 
