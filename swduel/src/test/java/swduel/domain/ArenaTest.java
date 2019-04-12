@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
     
     @Before
     public void setUp() {
-        arena = new Arena("smallTestArena");
+        arena = new Arena("testArena");
     }
     
     @Test
@@ -30,12 +30,12 @@ import static org.junit.Assert.*;
     
     @Test
     public void correctWidth() {
-        assertEquals(10, arena.getWidth());
+        assertEquals(32, arena.getWidth());
     }
     
     @Test
     public void correctHeight() {
-        assertEquals(6, arena.getHeight());
+        assertEquals(24, arena.getHeight());
     }
     
     @Test

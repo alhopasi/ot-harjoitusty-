@@ -106,12 +106,8 @@ public class LogicTest {
         Player p1 = logic.getPlayers().get(0);
         Player p2 = logic.getPlayers().get(1);
         logic.attack(p2);
-        System.out.println(logic.getAmmunition());
         logic.updateAll(1);
-        System.out.println(logic.getAmmunition());
         logic.updateAll(1);
-        System.out.println(logic.getAmmunition());
         logic.updateAll(1);
-        System.out.println(logic.getAmmunition());
     }
 }

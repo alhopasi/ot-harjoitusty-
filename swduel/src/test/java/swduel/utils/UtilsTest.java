@@ -25,7 +25,7 @@ public class UtilsTest {
 
     @Test
     public void readFileGivesListWithText() {
-        List<String> text = Utils.readFile("arenas/smallTestArena");
+        List<String> text = Utils.readFile("arenas/testArena");
         assertFalse(text.isEmpty());
     }
 
