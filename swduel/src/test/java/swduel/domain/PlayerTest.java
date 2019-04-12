@@ -65,12 +65,35 @@ public class PlayerTest {
     }
     
     @Test
-    public void positionCanBeUpdated() {
+    public void playerPositionCanBeUpdated() {
         player.setX(0);
         player.setY(0);
         player.setVelocity(60, 10);
         player.update(0.5);
         assertEquals(30, player.getX());
         assertEquals(5, player.getY());
+    }
+    
+    @Test
+    public void playerScoreEquals() {
+        assertEquals(0, player.getScore());
+    }
+    
+    @Test
+    public void playerScoreCanBeAdded() {
+        player.addScore();
+        assertEquals(1, player.getScore());
+    }
+    
+    @Test
+    public void playerIdEquals() {
+        assertEquals(0, player.getId());
+    }
+    
+    @Test
+    public void playerToString() {
+        player.setX(0);
+        player.setY(0);
+        assertEquals("(0.0:0.0)  0.0:0.0  weapon: null", player.toString());
     }
 }
