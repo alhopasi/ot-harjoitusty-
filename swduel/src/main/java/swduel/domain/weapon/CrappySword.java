@@ -3,10 +3,10 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LightsaberSwing;
 
-public class Lightsaber extends Weapon {
-    
-    public Lightsaber() {
-        super("Lightsaber", 10, 4, 10, 40, 300);
+public class CrappySword extends Weapon {
+
+    public CrappySword() {
+        super("Crappy Sword", 100, 10, 10, 40, 300);
     }
     
     @Override

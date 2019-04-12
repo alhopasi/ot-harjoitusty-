@@ -30,7 +30,7 @@ public class GameMenu {
 
     public GameMenu(Stage stage) {
         this.stage = stage;
-        this.version = "0.1";
+        this.version = "0.2";
         this.arenas = readArenaNames();
 
     }

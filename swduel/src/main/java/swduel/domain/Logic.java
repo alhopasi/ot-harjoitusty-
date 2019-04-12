@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.TreeSet;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.weapon.AutoBlaster;
-import swduel.domain.weapon.BlasterRifle;
+import swduel.domain.weapon.LongshotBlaster;
+import swduel.domain.weapon.CrappySword;
+import swduel.domain.weapon.LaserWall;
 import swduel.domain.weapon.Lightsaber;
 import swduel.domain.weapon.Weapon;
 
@@ -158,18 +160,6 @@ public class Logic {
         spawner.randomPlayerLocation(player);
     }
 
-    private void setWeapon(Player player, String weapon) {
-        Weapon newWeapon;
-        if (weapon.equals("Auto Blaster")) {
-            newWeapon = new AutoBlaster();
-        } else if (weapon.equals("Blaster Rifle")) {
-            newWeapon = new BlasterRifle();
-        } else {
-            newWeapon = new Lightsaber();
-        }
-        player.setWeapon(newWeapon);
-    }
-
     private void createAmmunition(Player player) {
         int facing = player.getFacing();
         int x = player.getX();
@@ -208,9 +198,27 @@ public class Logic {
 
     private TreeSet<Weapon> generateWeapons() {
         TreeSet<Weapon> newWeapons = new TreeSet<>();
-        newWeapons.add(new BlasterRifle());
+        newWeapons.add(new LongshotBlaster());
         newWeapons.add(new AutoBlaster());
         newWeapons.add(new Lightsaber());
+        newWeapons.add(new CrappySword());
+        newWeapons.add(new LaserWall());
         return newWeapons;
+    }
+
+    private void setWeapon(Player player, String weapon) {
+        Weapon newWeapon;
+        if (weapon.equals("Auto Blaster")) {
+            newWeapon = new AutoBlaster();
+        } else if (weapon.equals("Longshot Blaster")) {
+            newWeapon = new LongshotBlaster();
+        } else if (weapon.equals("Crappy Sword")) {
+            newWeapon = new CrappySword();
+        } else if (weapon.equals("Laser Wall")) {
+            newWeapon = new LaserWall();
+        } else {
+            newWeapon = new Lightsaber();
+        }
+        player.setWeapon(newWeapon);
     }
 }

@@ -3,14 +3,14 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LightsaberSwing;
 
-public class Lightsaber extends Weapon {
+public class LaserWall extends Weapon {
     
-    public Lightsaber() {
-        super("Lightsaber", 10, 4, 10, 40, 300);
+    public LaserWall() {
+        super("Laser Wall", 100, 7, 10, 40, 500);
     }
     
     @Override
     public Ammunition getAmmo(int ammoX, int ammoY, int velocityX) {
-        return new LightsaberSwing(ammoX, ammoY, 10, 40, velocityX, 0.07);
+        return new LightsaberSwing(ammoX, ammoY, 10, 40, velocityX, 2);
     }
 }

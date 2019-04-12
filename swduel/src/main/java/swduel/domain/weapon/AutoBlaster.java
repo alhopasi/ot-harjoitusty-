@@ -6,7 +6,7 @@ import swduel.domain.ammunition.LaserShot;
 public class AutoBlaster extends Weapon {
 
     public AutoBlaster() {
-        super("Auto Blaster", 50, 3, 8, 2, 800);
+        super("Auto Blaster", 30, 3, 8, 2, 1000);
     }
     
     @Override
