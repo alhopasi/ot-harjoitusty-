@@ -8,7 +8,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import swduel.domain.ActionHandler;
 import swduel.domain.Logic;
 
 public class Game {

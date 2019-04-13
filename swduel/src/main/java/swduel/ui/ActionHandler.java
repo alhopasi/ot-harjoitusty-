@@ -1,4 +1,4 @@
-package swduel.domain;
+package swduel.ui;
 
 import swduel.ui.Gamescreen;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import swduel.domain.Logic;
 
 public class ActionHandler {
 

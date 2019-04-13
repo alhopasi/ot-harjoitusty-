@@ -1,11 +1,9 @@
 package swduel.domain;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import swduel.domain.weapon.Weapon;
 
 public class LogicTest {
 
@@ -105,9 +103,42 @@ public class LogicTest {
     public void somethingHappensWhenPlayerIsHit() {
         Player p1 = logic.getPlayers().get(0);
         Player p2 = logic.getPlayers().get(1);
+        Weapon p2w = p2.getWeapon();
         logic.attack(p2);
-        logic.updateAll(1);
-        logic.updateAll(1);
-        logic.updateAll(1);
+        assertEquals(0, p2.getScore());
+        assertTrue(p2w == p2.getWeapon());
+        assertEquals(1, logic.getAmmunition().size());
+        logic.updateAll(0.25);
+        assertEquals(1, p2.getScore());
+        assertFalse(p2w == p2.getWeapon());
+        assertEquals(0, logic.getAmmunition().size());
+    }
+    
+    @Test
+    public void ammoCanHitEachOther() {
+        Player p1 = logic.getPlayers().get(0);
+        Player p2 = logic.getPlayers().get(1);
+        logic.attack(p1);
+        logic.attack(p2);
+        System.out.println(logic.getAmmunition());
+        logic.updateAll(0.12);
+        assertEquals(0, logic.getAmmunition().size());
+    }
+    
+    @Test
+    public void gameEndsWhenEnoughScore() {
+        for (int i = 0; i < 6; i++) {
+            Player p1 = logic.getPlayers().get(0);
+            Player p2 = logic.getPlayers().get(1);
+            p1.setX(100);
+            p1.setY(735);
+            p1.setFacing(1);
+            p2.setX(150);
+            p2.setY(735);
+            p2.setFacing(0);
+            logic.attack(p2);
+            logic.updateAll(0.01);
+        }
+        assertTrue(logic.getGameFinished());
     }
 }
