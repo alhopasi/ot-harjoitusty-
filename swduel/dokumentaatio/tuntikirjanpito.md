@@ -30,6 +30,6 @@
 | 5.4   | 2,5    | aseiden ja spritejen lisäys, pientä bugikorjausta |       | 5      | ammusten lisäys, grafiikoiden piirto ammuksille, ekat aseet ja ammukset toimiviksi |
 | 6.4.  | 1,5    | refaktorointia ja uuden aseen lisäys |
 | 12.4. | 2      | ammukset osuu seiniin ja toisiinsa, pientä refaktoria, pelaajainfon piirtäminen |
-|       | 3      | Kaksi uutta asetta. Testejä. Release. |
-| 13.4. | 
-| yht.  | 55     |
+|       | 3      | kaksi uutta asetta. Testejä. Release. |
+| 13.4. | 2      | sekvenssikaavio, tiedostot jar-packageen pakkauksen yhteydessä |
+| yht.  | 57     |
