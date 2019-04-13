@@ -31,4 +31,5 @@
 | 6.4.  | 1,5    | refaktorointia ja uuden aseen lisäys |
 | 12.4. | 2      | ammukset osuu seiniin ja toisiinsa, pientä refaktoria, pelaajainfon piirtäminen |
 |       | 3      | Kaksi uutta asetta. Testejä. Release. |
+| 13.4. | 
 | yht.  | 55     |

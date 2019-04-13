@@ -2,6 +2,8 @@
 
 ![Luokkakaavio](kuvat/luokkakaavio.jpg "Luokkakaavio")
 
+![Sekvenssikaavio](kuvat/sekvenssikaavio.png "Sekvenssikaavio")
+
 ## Rakenne
 
 Koodin rakenne on seuraava:

@@ -12,6 +12,16 @@
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>arenas</directory>
+                <targetPath>swduel/arenas</targetPath>
+            </resource>
+            <resource>
+                <directory>images</directory>
+                <targetPath>swduel/images</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
