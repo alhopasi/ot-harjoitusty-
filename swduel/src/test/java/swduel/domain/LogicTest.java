@@ -120,7 +120,6 @@ public class LogicTest {
         Player p2 = logic.getPlayers().get(1);
         logic.attack(p1);
         logic.attack(p2);
-        System.out.println(logic.getAmmunition());
         logic.updateAll(0.12);
         assertEquals(0, logic.getAmmunition().size());
     }

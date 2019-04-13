@@ -31,5 +31,5 @@
 | 6.4.  | 1,5    | refaktorointia ja uuden aseen lisäys |
 | 12.4. | 2      | ammukset osuu seiniin ja toisiinsa, pientä refaktoria, pelaajainfon piirtäminen |
 |       | 3      | kaksi uutta asetta. Testejä. Release. |
-| 13.4. | 2      | sekvenssikaavio, tiedostot jar-packageen pakkauksen yhteydessä |
-| yht.  | 57     |
+| 13.4. | 3      | sekvenssikaavio, packagen säätöä |
+| yht.  | 58     |

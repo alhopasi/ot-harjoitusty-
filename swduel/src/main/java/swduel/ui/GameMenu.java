@@ -58,6 +58,7 @@ public class GameMenu {
     }
 
     private List<String> readArenaNames() {
+        
         List<String> arenaList = new ArrayList<>();
         for (File file : new File("arenas/").listFiles()) {
             arenaList.add(file.getName());

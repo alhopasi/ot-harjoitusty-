@@ -12,15 +12,15 @@ public class Arena {
     public Arena(String arenaFile) {
         createArena(arenaFile);
     }
-    
+
     public int getWidth() {
         return width;
     }
-    
+
     public int getHeight() {
         return height;
     }
-    
+
     public int getTile(int y, int x) {
         if (y < 0 || x < 0 || y >= height || x >= width) {
             return -1;
@@ -33,7 +33,7 @@ public class Arena {
         width = lines.get(0).length();
         height = lines.size();
         arena = new int[height][width];
-        
+
         for (int y = 0; y < height; y++) {
             String[] chars = lines.get(y).split("");
             for (int x = 0; x < width; x++) {
