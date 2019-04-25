@@ -183,13 +183,4 @@ public class WallCollisionHandler {
         player.setY((player.getY() / 32) * 32 - 1);
         player.setVelocity(player.getVelocityX(), 0);
     }
-
-    private void updatePosition(Player player, Integer nwCorner, Integer neCorner, Integer swCorner, Integer seCorner) {
-        int playerX = player.getX();
-        int playerY = player.getY();
-        swCorner = arena.getTile(playerY / 32, playerX / 32);
-        nwCorner = arena.getTile((playerY - 63) / 32, playerX / 32);
-        seCorner = arena.getTile(playerY / 32, (playerX + 31) / 32);
-        neCorner = arena.getTile((playerY - 63) / 32, (playerX + 31) / 32);
-    }
 }

@@ -33,4 +33,6 @@
 |       | 3      | kaksi uutta asetta. Testejä. Release. |
 | 13.4. | 3      | sekvenssikaavio, packagen säätöä |
 | 25.4. | 2      | ääniefektien lisäys |
-| yht.  | 58     |
+|       | 3      | musiikin lisäys |
+|       | 1      | testien lisäystä |
+| yht.  | 62     |

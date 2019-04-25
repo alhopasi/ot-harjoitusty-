@@ -52,6 +52,25 @@ public class LogicTest {
         logic.updateAll(0.1);
         assertEquals(0, logic.getPlayers().get(0).getVelocityY(), 0);
     }
+    
+    @Test
+    public void playerCanNotMoveToWalls() {
+        Player player = logic.getPlayers().get(0);
+        player.setX(30);
+        logic.updateAll(0);
+        assertEquals(33, player.getX());
+        int arenaWidth = logic.getArena().getWidth()*32;
+        player.setX(arenaWidth - 64 + 6);
+        logic.updateAll(0);
+        assertEquals(arenaWidth - 64 - 1, player.getX());
+        int arenaHeight = logic.getArena().getHeight()*32;
+        player.setY(arenaHeight - 32 + 5);
+        logic.updateAll(0);
+        assertEquals(arenaHeight - 32 - 1, player.getY());
+        player.setY(90);
+        logic.updateAll(0);
+        assertEquals(96, player.getY());
+    }
 
     @Test
     public void playerIsAffectedByGravity() {
@@ -109,6 +128,7 @@ public class LogicTest {
         assertTrue(p2w == p2.getWeapon());
         assertEquals(1, logic.getAmmunition().size());
         logic.updateAll(0.25);
+        logic.updateAll(0.25);
         assertEquals(1, p2.getScore());
         assertFalse(p2w == p2.getWeapon());
         assertEquals(0, logic.getAmmunition().size());
@@ -120,6 +140,7 @@ public class LogicTest {
         Player p2 = logic.getPlayers().get(1);
         logic.attack(p1);
         logic.attack(p2);
+        logic.updateAll(0.12);
         logic.updateAll(0.12);
         assertEquals(0, logic.getAmmunition().size());
     }

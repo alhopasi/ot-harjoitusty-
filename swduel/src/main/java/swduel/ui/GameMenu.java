@@ -27,12 +27,14 @@ public class GameMenu {
     private Label arenaLabel;
     private Stage stage;
     private Game game;
+    private AudioHandler musicHandler;
 
     public GameMenu(Stage stage) {
         this.stage = stage;
         this.version = "0.2";
         this.arenas = readArenaNames();
-
+        this.musicHandler = new AudioHandler();
+        musicHandler.playMusic("sounds/music.mp3");
     }
 
     public String getChosenArena() {
