@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeSet;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.weapon.AutoBlaster;
+import swduel.domain.weapon.BlasterPistol;
 import swduel.domain.weapon.LongshotBlaster;
 import swduel.domain.weapon.CrappySword;
 import swduel.domain.weapon.LaserWall;
@@ -76,19 +77,20 @@ public class Logic {
     }
 
     private void updateAmmoPosition(double time) {
+        checkAmmoHits();
+
         Iterator<Ammunition> it = shotsFired.iterator();
         while (it.hasNext()) {
             if (gameFinished) {
                 return;
             }
             Ammunition ammo = it.next();
-            ammo.update(time);
             if (ammoOutOfTimeOrHitsSomething(ammo)) {
                 it.remove();
                 continue;
             }
+            ammo.update(time);
         }
-        checkAmmoHits();
     }
 
     private boolean ammoOutOfTimeOrHitsSomething(Ammunition ammo) {
@@ -203,6 +205,7 @@ public class Logic {
         newWeapons.add(new Lightsaber());
         newWeapons.add(new CrappySword());
         newWeapons.add(new LaserWall());
+        newWeapons.add(new BlasterPistol());
         return newWeapons;
     }
 
@@ -216,6 +219,8 @@ public class Logic {
             newWeapon = new CrappySword();
         } else if (weapon.equals("Laser Wall")) {
             newWeapon = new LaserWall();
+        } else if (weapon.equals("Blaster Pistol")) {
+            newWeapon = new BlasterPistol();
         } else {
             newWeapon = new Lightsaber();
         }

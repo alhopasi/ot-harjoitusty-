@@ -31,7 +31,6 @@ public class Game {
         window.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         window.setCenter(canvas);
         gameScene = new Scene(window);
-
         return gameScene;
     }
 
