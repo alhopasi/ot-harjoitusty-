@@ -12,6 +12,7 @@ import swduel.domain.weapon.CrappySword;
 import swduel.domain.weapon.LaserWall;
 import swduel.domain.weapon.Lightsaber;
 import swduel.domain.weapon.Weapon;
+import swduel.ui.AudioHandler;
 
 public class Logic {
 
@@ -22,6 +23,7 @@ public class Logic {
     private TreeSet<Weapon> weapons;
     private List<Ammunition> shotsFired;
     private boolean gameFinished;
+    private AudioHandler audioHandler;
 
     public Logic(String arenaFile) {
         this.arena = new Arena(arenaFile);
@@ -30,6 +32,8 @@ public class Logic {
         wallCollisionHandler = new WallCollisionHandler(arena);
 
         weapons = generateWeapons();
+        audioHandler = new AudioHandler();
+        generateAudio(audioHandler);
 
         players.add(new Player(0));
         players.add(new Player(1));
@@ -66,6 +70,7 @@ public class Logic {
         }
         createAmmunition(player);
         player.getWeapon().addCooldown();
+        audioHandler.playSound(player.getWeapon().getSoundEffectName());
     }
 
     public boolean getGameFinished() {
@@ -94,7 +99,9 @@ public class Logic {
     }
 
     private boolean ammoOutOfTimeOrHitsSomething(Ammunition ammo) {
-        if (ammo.getAliveTime() < 0 || checkArenaBoundaries(ammo) || checkPlayerHits(ammo)
+        if (ammo.getAliveTime() < 0
+                || checkArenaBoundaries(ammo)
+                || checkPlayerHits(ammo)
                 || wallCollisionHandler.checkIfInsideWall(ammo)) {
             return true;
         }
@@ -143,6 +150,7 @@ public class Logic {
     }
 
     private void handlePlayerHit(Player player) {
+        audioHandler.playSound("hurt");
         int winnerId;
         if (player.getId() == 0) {
             winnerId = 1;
@@ -225,5 +233,15 @@ public class Logic {
             newWeapon = new Lightsaber();
         }
         player.setWeapon(newWeapon);
+    }
+
+    private void generateAudio(AudioHandler audioHandler) {
+        audioHandler.addAudioClip("lasershot", "sounds/lasershot.wav");
+        audioHandler.addAudioClip("lasershotBig", "sounds/lasershotBig.wav");
+        audioHandler.addAudioClip("laserwall", "sounds/laserwall.wav");
+        audioHandler.addAudioClip("sword", "sounds/sword.wav");
+        audioHandler.addAudioClip("lightsaber1", "sounds/lightsaber1.wav");
+        audioHandler.addAudioClip("lightsaber2", "sounds/lightsaber2.wav");
+        audioHandler.addAudioClip("hurt", "sounds/hurt.wav");
     }
 }

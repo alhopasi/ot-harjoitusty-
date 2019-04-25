@@ -32,4 +32,5 @@
 | 12.4. | 2      | ammukset osuu seiniin ja toisiinsa, pientä refaktoria, pelaajainfon piirtäminen |
 |       | 3      | kaksi uutta asetta. Testejä. Release. |
 | 13.4. | 3      | sekvenssikaavio, packagen säätöä |
+| 25.4. | 2      | ääniefektien lisäys |
 | yht.  | 58     |

@@ -15,4 +15,8 @@ public class AutoBlaster extends Weapon {
         return new LaserShot(ammoX, ammoY, 16, 5, velocityX, 2);
     }
     
+    @Override
+    public String getSoundEffectName() {
+        return "lasershot";
+    }
 }

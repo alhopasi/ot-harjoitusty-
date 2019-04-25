@@ -41,6 +41,10 @@ public abstract class Weapon implements Comparable<Weapon> {
         newAmmo.setFacing(facing);
         return newAmmo;
     }
+    
+    public String getSoundEffectName() {
+        return "lasershot";
+    }
 
     public int getCooldown() {
         return this.cooldown;
