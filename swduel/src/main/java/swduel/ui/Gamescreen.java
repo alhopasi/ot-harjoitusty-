@@ -139,7 +139,12 @@ public class Gamescreen {
             PixelReader file;
             file = images.getOrDefault("players", images.get("0"));
 
-            drawSprite(pixelWriter, i, player, file);
+            int frame = 0;
+            if (player.isRunning()) {
+                    player.setNextRunningFrame();
+                frame = player.getRunningFrame();
+            }
+            drawSprite(pixelWriter, i, frame, player, file);
         }
     }
 
@@ -150,20 +155,20 @@ public class Gamescreen {
 
             PixelReader file;
             file = images.getOrDefault(ammo.getFileName(), images.get("0"));
-            drawSprite(pixelWriter, 0, ammo, file);
+            drawSprite(pixelWriter, 0, 0, ammo, file);
         }
     }
 
-    private void drawSprite(PixelWriter pixelWriter, int i, Sprite sprite, PixelReader file) {
+    private void drawSprite(PixelWriter pixelWriter, int i, int frame, Sprite sprite, PixelReader file) {
         try {
             for (int y = 0; y < sprite.getHeight(); y++) {
                 for (int x = 0; x < sprite.getWidth(); x++) {
 
-                    if (pixelIsTransparent(file, x, y, i, sprite)) {
+                    if (pixelIsTransparent(file, x, y, i, frame, sprite)) {
                         continue;
                     }
 
-                    drawPixel(file, x, y, i, sprite, pixelWriter);
+                    drawPixel(file, x, y, i, frame, sprite, pixelWriter);
                 }
             }
         } catch (Exception e) {
@@ -171,8 +176,8 @@ public class Gamescreen {
         }
     }
 
-    private void drawPixel(PixelReader file, int x, int y, int i, Sprite sprite, PixelWriter pixelWriter) {
-        Color color = file.getColor(x, y + i * sprite.getHeight());
+    private void drawPixel(PixelReader file, int x, int y, int i, int frame, Sprite sprite, PixelWriter pixelWriter) {
+        Color color = file.getColor(x + frame * sprite.getWidth(), y + i * sprite.getHeight());
 
         int drawX = sprite.getX() + x;
         if (sprite.getFacing() == 0) {
@@ -183,8 +188,8 @@ public class Gamescreen {
         pixelWriter.setColor(drawX, drawY, color);
     }
 
-    private boolean pixelIsTransparent(PixelReader file, int x, int y, int i, Sprite sprite) {
-        int pixel = file.getArgb(x, y + i * sprite.getHeight());
+    private boolean pixelIsTransparent(PixelReader file, int x, int y, int i, int frame, Sprite sprite) {
+        int pixel = file.getArgb(x + frame*sprite.getWidth(), y + i * sprite.getHeight());
         if ((pixel >> 24) == 0x00) {
             return true;
         }

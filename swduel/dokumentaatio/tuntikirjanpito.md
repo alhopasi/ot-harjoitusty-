@@ -35,5 +35,6 @@
 | 25.4. | 2      | ääniefektien lisäys |
 |       | 4      | musiikin lisäys |
 |       | 1      | testien lisäystä |
-| 26.5. | 2,5    | JavaDocin kirjoittelua |
-| yht.  | 67,5   |
+| 26.5. | 3      | JavaDocin lisäys ja dokumentaation päivitystä |
+|       | 2      | animaatiot juoksemiselle |
+| yht.  | 70     |

@@ -40,7 +40,7 @@ public class GameMenu {
      */
     public GameMenu(Stage stage) {
         this.stage = stage;
-        this.version = "0.2";
+        this.version = "0.3";
         this.arenas = readArenaNames();
         this.musicHandler = new AudioHandler();
         musicHandler.playMusic("sounds/music.mp3");

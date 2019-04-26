@@ -4,8 +4,16 @@ import java.util.Random;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LightsaberSwing;
 
+/**
+ * Luokka Laser Wall aseelle.
+ *
+ * @see swduel.domain.weapon.Weapon
+ */
 public class Lightsaber extends Weapon {
 
+    /**
+     * Konstruktori syöttää aseen tiedot.
+     */
     public Lightsaber() {
         super("Lightsaber", 10, 4, 10, 40, 300);
     }

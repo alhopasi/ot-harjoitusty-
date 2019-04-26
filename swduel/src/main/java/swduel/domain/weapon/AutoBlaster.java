@@ -4,8 +4,15 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LaserShot;
 
+/**
+ * Luokka AutoBlaster aseelle.
+ * @see swduel.domain.weapon.Weapon
+ */
 public class AutoBlaster extends Weapon {
 
+    /**
+     * Konstruktori syöttää aseen tiedot.
+     */
     public AutoBlaster() {
         super("Auto Blaster", 30, 3, 16, 5, 1000);
     }

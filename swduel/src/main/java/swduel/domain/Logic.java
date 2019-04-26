@@ -67,9 +67,9 @@ public class Logic {
      * Metodi päivittää pelaajien sijaintia, hidastaa liikettä, tarkastaa onko
      * pelaajat seinän sisällä, tarkastaa painovoiman vaikutukset sekä päivittää
      * ammusten sijaintia.
-     * 
+     *
      * @see swduel.domain.Player#update(double)
-     * @see swduel.domain.WallCollisionHandler#checkIfInsideWall(swduel.domain.Player) 
+     * swduel.domain.WallCollisionHandler#checkIfInsideWall(swduel.domain.Player)
      * @param time Aika joka on kulunut edellisestä päivityksestä
      */
     public void updateAll(double time) {
@@ -82,6 +82,12 @@ public class Logic {
         updateAmmoPosition(time);
     }
 
+    /**
+     * Metodi tarkastaa voiko pelaaja hyökätä. Jos voi, luodaan ammus ja
+     * lisätään aseeseen cooldownia. Lisäksi metodi soittaa aseen ampumisäänen.
+     *
+     * @param player Pelaaja joka yrittää ampua.
+     */
     public void attack(Player player) {
         if (player.getWeapon().getCooldown() > 0) {
             return;

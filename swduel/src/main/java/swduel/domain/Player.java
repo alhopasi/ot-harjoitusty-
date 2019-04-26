@@ -13,6 +13,7 @@ public class Player extends Sprite {
     private Weapon weapon;
     private int id;
     private int score;
+    private int runningFrame;
 
     /**
      * Konstruktori asettaa pelaajan kohtaan x: -1, y: -1 sekä maksiminopeuden
@@ -25,6 +26,7 @@ public class Player extends Sprite {
         this.id = id;
         this.maxVelocity = 300;
         this.score = 0;
+        this.runningFrame = 1;
     }
 
     /**
@@ -90,6 +92,21 @@ public class Player extends Sprite {
 
     public double getMaxVelocity() {
         return this.maxVelocity;
+    }
+    
+    public boolean isRunning() {
+        return (super.getVelocityX() != 0 && super.getVelocityY() == 0);
+    }
+    
+    public void setNextRunningFrame() {
+        runningFrame++;
+        if (runningFrame > 2) {
+            runningFrame = 1;
+        }
+    }
+    
+    public int getRunningFrame() {
+        return runningFrame;
     }
 
     @Override

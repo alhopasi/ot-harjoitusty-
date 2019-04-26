@@ -3,8 +3,16 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LightsaberSwing;
 
+/**
+ * Luokka Crappy Sword aseelle.
+ *
+ * @see swduel.domain.weapon.Weapon
+ */
 public class CrappySword extends Weapon {
 
+    /**
+     * Konstruktori syöttää aseen tiedot.
+     */
     public CrappySword() {
         super("Crappy Sword", 100, 10, 10, 40, 300);
     }

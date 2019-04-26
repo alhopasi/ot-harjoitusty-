@@ -3,8 +3,16 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LightsaberSwing;
 
+/**
+ * Luokka Laser Wall aseelle.
+ *
+ * @see swduel.domain.weapon.Weapon
+ */
 public class LaserWall extends Weapon {
 
+    /**
+     * Konstruktori syöttää aseen tiedot.
+     */
     public LaserWall() {
         super("Laser Wall", 100, 7, 10, 40, 500);
     }

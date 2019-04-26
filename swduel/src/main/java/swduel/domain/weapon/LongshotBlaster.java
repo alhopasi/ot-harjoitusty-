@@ -3,8 +3,16 @@ package swduel.domain.weapon;
 import swduel.domain.ammunition.Ammunition;
 import swduel.domain.ammunition.LaserShot;
 
+/**
+ * Luokka Laser Wall aseelle.
+ *
+ * @see swduel.domain.weapon.Weapon
+ */
 public class LongshotBlaster extends Weapon {
 
+    /**
+     * Konstruktori syöttää aseen tiedot.
+     */
     public LongshotBlaster() {
         super("Longshot Blaster", 120, 6, 16, 5, 2000);
     }
