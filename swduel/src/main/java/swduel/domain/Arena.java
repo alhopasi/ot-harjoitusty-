@@ -3,12 +3,22 @@ package swduel.domain;
 import java.util.List;
 import swduel.utils.Utils;
 
+/**
+ * Luokassa on tiedot pelin areenasta
+ *
+ * @author alhopasi
+ */
 public class Arena {
 
     private int width;
     private int height;
     private int[][] arena;
 
+    /**
+     * Luokan konstruktori
+     *
+     * @param arenaFile areenan nimi
+     */
     public Arena(String arenaFile) {
         createArena(arenaFile);
     }
@@ -21,6 +31,13 @@ public class Arena {
         return height;
     }
 
+    /**
+     * palauttaa areenan tiilen numeron kohdasta y, x
+     *
+     * @param y korkeudelta y
+     * @param x leveydeltä x
+     * @return tiilen numero
+     */
     public int getTile(int y, int x) {
         if (y < 0 || x < 0 || y >= height || x >= width) {
             return -1;

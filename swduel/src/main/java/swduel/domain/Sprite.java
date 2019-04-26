@@ -1,5 +1,10 @@
 package swduel.domain;
 
+/**
+ * Sprite on kaikkien piirrettävien mahdollisesti liikkuvien objektien abstrakti
+ * luokka.
+ *
+ */
 public abstract class Sprite {
 
     private double x;
@@ -10,6 +15,14 @@ public abstract class Sprite {
     private double velocityY;
     private int facing;
 
+    /**
+     * Konstruktorissa määritellään Spriten sijainti sekä korkeus ja leveys
+     *
+     * @param x spriten vasen reuna x-akselilla
+     * @param y spriten alareuna y-akselilla
+     * @param height spriten korkeus
+     * @param width spriten leveys
+     */
     public Sprite(int x, int y, int height, int width) {
         this.x = x;
         this.y = y;
@@ -18,11 +31,23 @@ public abstract class Sprite {
         this.facing = 0;
     }
 
+    /**
+     * Lisää spritelle nopeutta
+     *
+     * @param x nopeuden lisäyksen määrä horisontaalisesti
+     * @param y nopeuden lisäyksen määrä vertikaalisesti
+     */
     public void addVelocity(double x, double y) {
         velocityX += x;
         velocityY += y;
     }
 
+    /**
+     * Asettaa spritelle nopeuden
+     *
+     * @param x horisontaalisen nopeuden arvo
+     * @param y vertikaalisen nopeuden arvo
+     */
     public void setVelocity(double x, double y) {
         velocityX = x;
         velocityY = y;
@@ -36,6 +61,11 @@ public abstract class Sprite {
         return velocityY;
     }
 
+    /**
+     * Asettaa Spriten katsomissuunnan. Käytetään esim. piirtämisessä.
+     *
+     * @param facing arvo 0: vasemmalle tai arvo 1: oikealle
+     */
     public void setFacing(int facing) {
         this.facing = facing;
     }
@@ -44,6 +74,12 @@ public abstract class Sprite {
         return facing;
     }
 
+    /**
+     * Päivittää Spriten sijaintia suhteessa paljonko aikaa kulunut viimeisestä
+     * päivityksestä
+     *
+     * @param time aika jota on kulunut viimeisestä päivityksestä
+     */
     public void update(double time) {
         x += velocityX * time;
         y += velocityY * time;
@@ -73,6 +109,12 @@ public abstract class Sprite {
         return this.width;
     }
 
+    /**
+     * Tarkistaa osuuko Sprite parametrina annettuun Spriteen.
+     *
+     * @param other toinen Sprite johon tehdään vertailu
+     * @return palauttaa true jos Sprite osuu vertailtavaan Spriteen
+     */
     public boolean collides(Sprite other) {
         if (this == other) {
             return false;
@@ -86,9 +128,11 @@ public abstract class Sprite {
         double otherTop = other.getY() - other.getHeight();
         double otherLeft = other.getX();
         double otherRight = other.getX() + other.getWidth();
-        
-        if ((myBottom >= otherTop && myBottom <= otherBottom || myTop >= otherTop && myTop <= otherBottom)
-                && (myRight <= otherRight && myRight >= otherLeft || myLeft <= otherRight && myLeft >= otherLeft)) {
+
+        if ((myBottom >= otherTop && myBottom <= otherBottom
+                || myTop >= otherTop && myTop <= otherBottom)
+                && (myRight <= otherRight && myRight >= otherLeft
+                || myLeft <= otherRight && myLeft >= otherLeft)) {
             return true;
         }
         return false;

@@ -6,8 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Luokassa on apumetodeita tiedon käsittelyyn.
+ */
 public class Utils {
     
+    /**
+     * Metodi lukee tiedoston ja palauttaa sen sisällön listana merkkijonona.
+     * @param file Luettava tiedosto
+     * @return Palauttaa listan merkkijonona.
+     */
     public static List<String> readFile(String file) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {

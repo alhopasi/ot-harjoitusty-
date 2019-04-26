@@ -2,6 +2,10 @@ package swduel.domain.weapon;
 
 import swduel.domain.ammunition.Ammunition;
 
+/**
+ * Abstrakti luokka aseelle
+ * 
+ */
 public abstract class Weapon implements Comparable<Weapon> {
 
     private String name;
@@ -12,6 +16,15 @@ public abstract class Weapon implements Comparable<Weapon> {
     private int ammoHeight;
     private int ammoVelocity;
 
+    /**
+     * Konstruktorille annetaan tiedot aseen nimestä, jäähtymisajasta, aseen tasosta sekä tiedot ammuksesta
+     * @param name Aseen nimi
+     * @param maxCooldown Aseen jäähtymisaika
+     * @param level Aseen taso
+     * @param ammoWidth Ammuksen leveys
+     * @param ammoHeight Ammuksen korkeus
+     * @param ammoVelocity Ammuksen nopeus
+     */
     public Weapon(String name, int maxCooldown, int level, int ammoWidth, int ammoHeight, int ammoVelocity) {
         this.name = name;
         this.maxCooldown = maxCooldown;
@@ -25,11 +38,26 @@ public abstract class Weapon implements Comparable<Weapon> {
         return this.name;
     }
 
+    /**
+     * Tämä metodi tulee ylikirjoittaa oikeassa luokassa.
+     * Metodin tarkoitus on palauttaa uusi oikeanlainen ammus.
+     * @param x Ammuksen vasen reuna
+     * @param y Ammuksen alareuna
+     * @param facing Ammuksen suunta
+     * @return Palauttaa uuden oikean ammuksen.
+     */
     protected Ammunition getAmmo(int x, int y, int facing) {
         System.out.println("Override getAmmo method with new weapon!");
         return null;
     }
 
+    /**
+     * Palauttaa uuden ammuksen joka lähtee oikeaan suuntaan oikealta sijainnilta.
+     * @param x Ampuvan pelaajan x
+     * @param y Ampuvan pelaajan y
+     * @param facing Ampuvan pelaajan katsomissuunta
+     * @return Palauttaa uuden ammuksen
+     */
     public Ammunition getNewAmmo(int x, int y, int facing) {
         int ammoX = this.calculateAmmoX(x, ammoWidth, facing);
         int ammoY = this.calculateAmmoY(y, ammoHeight);
@@ -42,6 +70,10 @@ public abstract class Weapon implements Comparable<Weapon> {
         return newAmmo;
     }
     
+    /**
+     * Palauttaa aseen ääniefektin, ylikirjoita oikeassa luokassa oikealla äänellä!
+     * @return oletuksena on "lasershot".
+     */
     public String getSoundEffectName() {
         return "lasershot";
     }
@@ -50,6 +82,10 @@ public abstract class Weapon implements Comparable<Weapon> {
         return this.cooldown;
     }
 
+    /**
+     * Vähentää aseen jäähtymisaikaa
+     * @param time Aika joka on kulunut viimeisestä kutsusta.
+     */
     public void lowerCooldown(double time) {
         if (cooldown > 0) {
             this.cooldown -= time;
@@ -67,6 +103,11 @@ public abstract class Weapon implements Comparable<Weapon> {
         return this.level;
     }
 
+    /**
+     * Vertaa aseiden tasoa.
+     * @param other Toinen ase.
+     * @return Palauttaa negatiivisen jos aseella on pienempi taso.
+     */
     @Override
     public int compareTo(Weapon other) {
         int result = this.level - other.level;

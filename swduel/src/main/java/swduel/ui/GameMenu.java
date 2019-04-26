@@ -19,6 +19,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Luokka huolehtii pelin päävalikosta ja kentän valinnasta.
+ */
 public class GameMenu {
 
     private String version;
@@ -29,6 +32,12 @@ public class GameMenu {
     private Game game;
     private AudioHandler musicHandler;
 
+    /**
+     * Luokka huolehtii päävalikon sisällöstä
+     * ja käynnistää pelin taustamusiikin.
+     * 
+     * @param stage Näytettävä stage
+     */
     public GameMenu(Stage stage) {
         this.stage = stage;
         this.version = "0.2";
@@ -37,10 +46,19 @@ public class GameMenu {
         musicHandler.playMusic("sounds/music.mp3");
     }
 
+    /**
+     * Areenan nimi joka on valittuna.
+     * Käytetään peliä käynnistettäessä hakemaan oikea areenan nimi.
+     * @return Palauttaa areenan joka on valittuna arenaNumberilla.
+     */
     public String getChosenArena() {
         return arenas.get(arenaNumber);
     }
-
+    
+    /**
+     * Rakentaa päävalikon näytettäväksi
+     * @return Näytettävä scene
+     */
     public Scene getScene() {
         VBox centerBox = createCenterBox();
         VBox bottomBox = createBottomBox();

@@ -14,6 +14,10 @@ import swduel.domain.weapon.Lightsaber;
 import swduel.domain.weapon.Weapon;
 import swduel.ui.AudioHandler;
 
+/**
+ * Luokka huolehtii pelin sisäisestä toiminnallisuudesta.
+ *
+ */
 public class Logic {
 
     private Arena arena;
@@ -25,6 +29,11 @@ public class Logic {
     private boolean gameFinished;
     private AudioHandler audioHandler;
 
+    /**
+     * Konstruktorille syötetään areenan nimi.
+     *
+     * @param arenaFile Areenan nimi
+     */
     public Logic(String arenaFile) {
         this.arena = new Arena(arenaFile);
         players = new ArrayList<>();
@@ -54,6 +63,15 @@ public class Logic {
         return this.players;
     }
 
+    /**
+     * Metodi päivittää pelaajien sijaintia, hidastaa liikettä, tarkastaa onko
+     * pelaajat seinän sisällä, tarkastaa painovoiman vaikutukset sekä päivittää
+     * ammusten sijaintia.
+     * 
+     * @see swduel.domain.Player#update(double)
+     * @see swduel.domain.WallCollisionHandler#checkIfInsideWall(swduel.domain.Player) 
+     * @param time Aika joka on kulunut edellisestä päivityksestä
+     */
     public void updateAll(double time) {
         for (Player player : players) {
             player.update(time);

@@ -3,16 +3,32 @@ package swduel.domain;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Luokan tehtävänä on arpoa pelaajat areenalle.
+ * 
+ */
 public class SpawnHandler {
 
     private List<Player> players;
     private Arena arena;
 
+    /**
+     * Konstruktorille syötetään lista pelaajista sekä pelin areena
+     * @param players
+     * @param arena 
+     */
     public SpawnHandler(List<Player> players, Arena arena) {
         this.players = players;
         this.arena = arena;
     }
 
+    /**
+     * Arpoo pelaajan sijainnin.
+     * Sijainnin arvonta tapahtuu seuraavin ehdoin:
+     * Jos kentällä on pelaaja, asetetaan uusi pelaaja vähintään puolen areenan päähän tästä pelaajasta.
+     * Korkeus arvotaan ja pelaaja pudotetaan lähimmälle areenan tiilelle alaspäin.
+     * @param player Pelaaja jonka sijainti arvotaan
+     */
     public void randomPlayerLocation(Player player) {
         boolean goodLocation = false;
         while (!goodLocation) {

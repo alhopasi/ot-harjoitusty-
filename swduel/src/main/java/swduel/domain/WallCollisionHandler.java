@@ -2,14 +2,36 @@ package swduel.domain;
 
 import swduel.domain.ammunition.Ammunition;
 
+/**
+ * Luokka huolehtii seinien osumien tarkistuksista ja pelaajien paikan
+ * korjauksesta
+ *
+ */
 public class WallCollisionHandler {
 
-    Arena arena;
+    private Arena arena;
 
+    /**
+     * Konstruktorille syötetään pelin areena
+     *
+     * @param arena Pelin areena
+     */
     public WallCollisionHandler(Arena arena) {
         this.arena = arena;
     }
 
+    /**
+     * Tarkastaa onko Pelaaja seinän sisällä ja siirtää pelaajan seinän
+     * ulkopuolelle
+     *
+     * @see swduel.domain.WallCollisionHandler#checkBottomAndTop(int, int, int,
+     * int, swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#checkMiddle(int, int, int, int,
+     * int, int, swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#checkCorners(int, int, int, int,
+     * swduel.domain.Player)
+     * @param player Pelaaja jota tutkitaan
+     */
     public void checkIfInsideWall(Player player) {
 
         while (true) {
@@ -33,6 +55,12 @@ public class WallCollisionHandler {
         }
     }
 
+    /**
+     * Tarkistaa onko ammus seinän sisällä
+     *
+     * @param ammo ammus jota tutkitaan
+     * @return palautta true jos ammus on seinän sisällä edes osittain
+     */
     public boolean checkIfInsideWall(Ammunition ammo) {
         int swCorner = arena.getTile(ammo.getY() / 32, ammo.getX() / 32);
         int nwCorner = arena.getTile((ammo.getY() - ammo.getHeight()) / 32, ammo.getX() / 32);
@@ -44,6 +72,19 @@ public class WallCollisionHandler {
         return false;
     }
 
+    /**
+     * Tarkistaa onko pelaajan yläreunan tai alareunan molemmat kulmat seinän
+     * sisällä. Jos ovat, siirtää pelaajaa ylös tai alaspäin.
+     *
+     * @param nwCorner pelaajan vasen yläkulma
+     * @param neCorner pelaajan oikea yläkulma
+     * @param swCorner pelaajan vasen alakulma
+     * @param seCorner pelaajan oikea alakulma
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setUp(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setDown(swduel.domain.Player)
+     * @return palauttaa true jos pelaajaa on siirretty
+     */
     private boolean checkBottomAndTop(int nwCorner, int neCorner, int swCorner, int seCorner, Player player) {
         if (swCorner != 0 && seCorner != 0) {
             setUp(player);
@@ -56,6 +97,21 @@ public class WallCollisionHandler {
         return false;
     }
 
+    /**
+     * Tarkistaa onko pelaajan yläkulma tai alakulma keskiosan kanssa seinän
+     * sisällä. Jos ovat, siirtää pelaajaa vasemmalle tai oikealle.
+     *
+     * @param nwCorner pelaajan vasen yläkulma
+     * @param neCorner pelaajan oikea yläkulma
+     * @param swCorner pelaajan vasen alakulma
+     * @param seCorner pelaajan oikea alakulma
+     * @param middleLeft pelaajan keskipiste vasemmassa reunassa
+     * @param middleRight pelaajan keskipiste oikeassa reunassa
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setLeft(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setRight(swduel.domain.Player)
+     * @return palauttaa true jos pelaajaa on siirretty
+     */
     private boolean checkMiddle(int nwCorner, int neCorner, int swCorner, int seCorner, int middleLeft, int middleRight, Player player) {
         if ((nwCorner != 0 && middleLeft != 0) || (swCorner != 0 && middleLeft != 0)) {
             setRight(player);
@@ -76,6 +132,25 @@ public class WallCollisionHandler {
         return false;
     }
 
+    /**
+     * Tarkistaa onko pelaajan kulmat seinän sisällä. Jos on, laskee mihin
+     * suuntaan pelaajaa tulee siirtää ja tekee siirron.
+     *
+     * @param nwCorner pelaajan vasen yläkulma
+     * @param neCorner pelaajan oikea yläkulma
+     * @param swCorner pelaajan vasen alakulma
+     * @param seCorner pelaajan oikea alakulma
+     * @param player Pelaaja
+     * @see
+     * swduel.domain.WallCollisionHandler#nwCornerCorrection(swduel.domain.Player)
+     * @see
+     * swduel.domain.WallCollisionHandler#neCornerCorrection(swduel.domain.Player)
+     * @see
+     * swduel.domain.WallCollisionHandler#swCornerCorrection(swduel.domain.Player)
+     * @see
+     * swduel.domain.WallCollisionHandler#seCornerCorrection(swduel.domain.Player)
+     * @return palauttaa true jos pelaajaa on siirretty
+     */
     private boolean checkCorners(int nwCorner, int neCorner, int swCorner, int seCorner, Player player) {
         if (nwCorner != 0) {
             nwCornerCorrection(player);
@@ -96,6 +171,14 @@ public class WallCollisionHandler {
         return false;
     }
 
+    /**
+     * Laskee mihin suuntaan pelaajaa siirretään jos vain vasen yläkulma on
+     * seinän sisällä
+     *
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setRight(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setDown(swduel.domain.Player)
+     */
     private void nwCornerCorrection(Player player) {
         int playerY = player.getY() - 63;
         int playerX = player.getX();
@@ -113,6 +196,14 @@ public class WallCollisionHandler {
         }
     }
 
+    /**
+     * Laskee mihin suuntaan pelaajaa siirretään jos vain oikea yläkulma on
+     * seinän sisällä
+     *
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setLeft(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setDown(swduel.domain.Player)
+     */
     private void neCornerCorrection(Player player) {
         int playerY = player.getY() - 63;
         int playerX = player.getX() + 31;
@@ -130,6 +221,14 @@ public class WallCollisionHandler {
         }
     }
 
+    /**
+     * Laskee mihin suuntaan pelaajaa siirretään jos vain oikea alakulma on
+     * seinän sisällä
+     *
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setLeft(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setUp(swduel.domain.Player)
+     */
     private void seCornerCorrection(Player player) {
         int playerY = player.getY();
         int playerX = player.getX() + 31;
@@ -147,6 +246,14 @@ public class WallCollisionHandler {
         }
     }
 
+    /**
+     * Laskee mihin suuntaan pelaajaa siirretään jos vain vasen alakulma on
+     * seinän sisällä
+     *
+     * @param player Pelaaja
+     * @see swduel.domain.WallCollisionHandler#setRight(swduel.domain.Player)
+     * @see swduel.domain.WallCollisionHandler#setUp(swduel.domain.Player)
+     */
     private void swCornerCorrection(Player player) {
         int playerY = player.getY();
         int playerX = player.getX();
@@ -164,21 +271,41 @@ public class WallCollisionHandler {
         }
     }
 
+    /**
+     * Siirtää pelaajaa alaspäin yhden pikselin
+     *
+     * @param player Pelaaja
+     */
     private void setDown(Player player) {
         player.setY((player.getY() / 32 + 1) * 32);
         player.setVelocity(player.getVelocityX(), 0);
     }
 
+    /**
+     * Siirtää pelaajaa oikealle yhden pikselin
+     *
+     * @param player Pelaaja
+     */
     private void setRight(Player player) {
         player.setX(((player.getX() / 32) + 1) * 32 + 1);
         player.setVelocity(0, player.getVelocityY());
     }
 
+    /**
+     * Siirtää pelaajaa vasemmalle yhden pikselin
+     *
+     * @param player Pelaaja
+     */
     private void setLeft(Player player) {
         player.setX((player.getX() / 32) * 32 - 1);
         player.setVelocity(0, player.getVelocityY());
     }
 
+    /**
+     * Siirtää pelaajaa ylöspäin yhden pikselin
+     *
+     * @param player Pelaaja
+     */
     private void setUp(Player player) {
         player.setY((player.getY() / 32) * 32 - 1);
         player.setVelocity(player.getVelocityX(), 0);

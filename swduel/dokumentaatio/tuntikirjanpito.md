@@ -35,4 +35,5 @@
 | 25.4. | 2      | ääniefektien lisäys |
 |       | 4      | musiikin lisäys |
 |       | 1      | testien lisäystä |
-| yht.  | 65     |
+| 26.5. | 2,5    | JavaDocin kirjoittelua |
+| yht.  | 67,5   |
