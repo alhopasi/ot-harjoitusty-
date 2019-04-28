@@ -40,10 +40,11 @@ public class GameMenu {
      */
     public GameMenu(Stage stage) {
         this.stage = stage;
-        this.version = "0.3";
+        this.version = "0.32";
         this.arenas = readArenaNames();
         this.musicHandler = new AudioHandler();
-        musicHandler.playMusic("sounds/music.mp3");
+        musicHandler.setMusicPath("sounds/music.mp3");
+        musicHandler.playMusic();
     }
 
     /**
@@ -95,6 +96,8 @@ public class GameMenu {
                 + "Jetpack:  TAB               Right Ctrl\n"
                 + "Attack:   Q                 Right Shift";
         Label infoLabel = createLabel(infoString, 16);
+        Label musicInfoLabel = createLabel("Press 'M' to toggle music", 16);
+        musicInfoLabel.setPadding(new Insets(5,5,5,5));
 
         Label versionLabel = createLabel("Version " + version, 16);
         HBox versionBox = new HBox();
@@ -102,7 +105,7 @@ public class GameMenu {
 
         VBox bottomBox = new VBox();
         bottomBox.setAlignment(Pos.CENTER);
-        bottomBox.getChildren().addAll(infoLabel, versionBox);
+        bottomBox.getChildren().addAll(infoLabel, musicInfoLabel, versionBox);
 
         return bottomBox;
     }
@@ -138,6 +141,8 @@ public class GameMenu {
             } else if (event.getCode() == KeyCode.ENTER) {
                 stage.setScene(game.getScene());
                 game.initGame(getChosenArena());
+            } else if(event.getCode() == KeyCode.M) {
+                musicHandler.toggleMusic();
             }
         });
     }
