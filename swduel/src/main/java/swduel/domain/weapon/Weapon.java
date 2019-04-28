@@ -81,6 +81,10 @@ public abstract class Weapon implements Comparable<Weapon> {
     public int getCooldown() {
         return this.cooldown;
     }
+    
+    public void setCooldown(int cd) {
+        this.cooldown = cd;
+    }
 
     /**
      * Vähentää aseen jäähtymisaikaa

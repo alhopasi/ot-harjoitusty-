@@ -28,6 +28,7 @@ public class Logic {
     private List<Ammunition> shotsFired;
     private boolean gameFinished;
     private AudioHandler audioHandler;
+    private List<Smoke> jetpackSmoke;
 
     /**
      * Konstruktorille syötetään areenan nimi.
@@ -51,8 +52,8 @@ public class Logic {
             spawner.randomPlayerLocation(player);
             setWeapon(player, weapons.first().getName());
         }
-
         shotsFired = new ArrayList<>();
+        jetpackSmoke = new ArrayList<>();
     }
 
     public Arena getArena() {
@@ -61,6 +62,10 @@ public class Logic {
 
     public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public List<Smoke> getSmoke() {
+        return this.jetpackSmoke;
     }
 
     /**
@@ -75,11 +80,13 @@ public class Logic {
     public void updateAll(double time) {
         for (Player player : players) {
             player.update(time);
+            addSmoke(player);
             slowDown(player);
             wallCollisionHandler.checkIfInsideWall(player);
             gravity(player);
         }
         updateAmmoPosition(time);
+        updateSmoke(time);
     }
 
     /**
@@ -103,6 +110,35 @@ public class Logic {
 
     public List<Ammunition> getAmmunition() {
         return this.shotsFired;
+    }
+
+    private void addSmoke(Player player) {
+        if (player.isUsingJetpack()) {
+            int smokeX = 0;
+            int smokeY = 20;
+            int x = player.getX() + smokeX;
+            if (player.getFacing() == 0) {
+                x = player.getX() + player.getWidth() - smokeX - 10;
+            }
+            int y = player.getY() - smokeY;
+            Smoke smoke = new Smoke(x, y);
+            jetpackSmoke.add(smoke);
+        }
+    }
+
+    private void updateSmoke(double time) {
+        Iterator<Smoke> it = jetpackSmoke.iterator();
+        while (it.hasNext()) {
+            if (gameFinished) {
+                return;
+            }
+            Smoke smoke = it.next();
+            if (smoke.getAliveTime() < 0) {
+                it.remove();
+                continue;
+            }
+            smoke.update(time);
+        }
     }
 
     private void updateAmmoPosition(double time) {

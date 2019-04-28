@@ -76,6 +76,9 @@ public class ActionHandler {
         }
         if (pressedKeys.getOrDefault(KeyCode.CONTROL, false)) {
             handleMovementAndFacing(1, 0, -30, -1);
+            logic.getPlayers().get(1).setUsingJetpack(true);
+        } else {
+            logic.getPlayers().get(1).setUsingJetpack(false);
         }
         if (pressedKeys.getOrDefault(KeyCode.A, false)) {
             handleMovementAndFacing(0, -30, 0, 0);
@@ -85,6 +88,9 @@ public class ActionHandler {
         }
         if (pressedKeys.getOrDefault(KeyCode.TAB, false)) {
             handleMovementAndFacing(0, 0, -30, -1);
+            logic.getPlayers().get(0).setUsingJetpack(true);
+        } else {
+            logic.getPlayers().get(0).setUsingJetpack(false);
         }
     }
 

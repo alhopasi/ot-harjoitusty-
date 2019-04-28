@@ -37,4 +37,5 @@
 |       | 1      | testien lisäystä |
 | 26.5. | 3      | JavaDocin lisäys ja dokumentaation päivitystä |
 |       | 2      | animaatiot juoksemiselle |
-| yht.  | 70     |
+| 28.5. | 1      | lentorepulle savu |
+| yht.  | 66     |

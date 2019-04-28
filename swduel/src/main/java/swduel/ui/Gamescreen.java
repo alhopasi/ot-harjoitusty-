@@ -17,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import swduel.domain.Logic;
 import swduel.domain.Player;
+import swduel.domain.Smoke;
 import swduel.domain.Sprite;
 import swduel.domain.ammunition.Ammunition;
 
@@ -79,13 +80,14 @@ public class Gamescreen {
             images.put(filename.split("\\.")[0], new Image("file:images/" + filename).getPixelReader());
         }
     }
-    
+
     private void drawAll() {
         WritableImage newScreen = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
         PixelWriter pixelWriter = newScreen.getPixelWriter();
 
         drawPlayers(pixelWriter);
         drawAmmunition(pixelWriter);
+        drawSmoke(pixelWriter);
 
         drawingTool.drawImage(arenaImage, 0, 0);
         drawingTool.drawImage(newScreen, 0, 0);
@@ -95,6 +97,15 @@ public class Gamescreen {
         }
     }
     
+    private void drawSmoke(PixelWriter pixelWriter) {
+        for (Smoke smoke : logic.getSmoke()) {
+            PixelReader file;
+            file = images.getOrDefault("smoke", images.get("0"));
+
+            drawSprite(pixelWriter, 0, 0, smoke, file);
+        }
+    }
+
     private void drawWinnerAndStop() {
         int winner = 1;
         if (logic.getPlayers().get(0).getScore() < logic.getPlayers().get(1).getScore()) {
@@ -141,7 +152,7 @@ public class Gamescreen {
 
             int frame = 0;
             if (player.isRunning()) {
-                    player.setNextRunningFrame();
+                player.setNextRunningFrame();
                 frame = player.getRunningFrame();
             }
             drawSprite(pixelWriter, i, frame, player, file);
@@ -164,7 +175,7 @@ public class Gamescreen {
             for (int y = 0; y < sprite.getHeight(); y++) {
                 for (int x = 0; x < sprite.getWidth(); x++) {
 
-                    if (pixelIsTransparent(file, x, y, i, frame, sprite)) {
+                    if (pixelIsTransparent(file, x, y, i, frame, sprite.getWidth(), sprite.getHeight())) {
                         continue;
                     }
 
@@ -172,7 +183,7 @@ public class Gamescreen {
                 }
             }
         } catch (Exception e) {
-            System.out.println("virhe piirtämisessä " + e.getMessage());
+            System.out.println("error drawing sprite " + e.getMessage());
         }
     }
 
@@ -188,8 +199,8 @@ public class Gamescreen {
         pixelWriter.setColor(drawX, drawY, color);
     }
 
-    private boolean pixelIsTransparent(PixelReader file, int x, int y, int i, int frame, Sprite sprite) {
-        int pixel = file.getArgb(x + frame*sprite.getWidth(), y + i * sprite.getHeight());
+    private boolean pixelIsTransparent(PixelReader file, int x, int y, int i, int frame, int width, int height) {
+        int pixel = file.getArgb(x + frame * width, y + i * height);
         if ((pixel >> 24) == 0x00) {
             return true;
         }

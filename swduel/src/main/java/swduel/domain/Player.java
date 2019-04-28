@@ -14,6 +14,7 @@ public class Player extends Sprite {
     private int id;
     private int score;
     private int runningFrame;
+    private boolean usingJetpack;
 
     /**
      * Konstruktori asettaa pelaajan kohtaan x: -1, y: -1 sekä maksiminopeuden
@@ -35,6 +36,14 @@ public class Player extends Sprite {
     public void addScore() {
         score++;
     }
+    
+    public void setUsingJetpack(boolean value) {
+        this.usingJetpack = value;
+    }
+    
+    public boolean isUsingJetpack() {
+        return usingJetpack;
+    }
 
     public int getScore() {
         return score;
@@ -51,6 +60,7 @@ public class Player extends Sprite {
      */
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
+        weapon.setCooldown(50);
     }
 
     public Weapon getWeapon() {
@@ -95,7 +105,7 @@ public class Player extends Sprite {
     }
     
     public boolean isRunning() {
-        return (super.getVelocityX() != 0 && super.getVelocityY() == 0);
+        return (super.getVelocityX() != 0 && super.getVelocityY() == 0 && !usingJetpack);
     }
     
     public void setNextRunningFrame() {
