@@ -43,26 +43,28 @@ public class AudioHandler {
             FileInputStream fis = new FileInputStream(musicPath);
             playMP3 = new Player(fis);
             isPlayingMusic = true;
-
-            Thread thread = new Thread() {
-                public void run() {
-                    try {
-                        playMP3.play();
-                        if (playMP3.isComplete()) {
-                            playMusic();
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }
-            };
-            thread.setDaemon(true);
-            thread.start();
-
+            createNewThread();
         } catch (Exception exc) {
             exc.printStackTrace();
             System.out.println("Failed to play the file.");
         }
+    }
+
+    private void createNewThread() {
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    playMP3.play();
+                    if (playMP3.isComplete()) {
+                        playMusic();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        };
+        thread.setDaemon(true);
+        thread.start();
     }
 
 }

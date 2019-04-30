@@ -60,7 +60,6 @@ public class Player extends Sprite {
      */
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        weapon.setCooldown(50);
     }
 
     public Weapon getWeapon() {

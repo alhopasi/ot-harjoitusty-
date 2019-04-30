@@ -33,9 +33,9 @@ public class GameMenu {
     private AudioHandler musicHandler;
 
     /**
-     * Luokka huolehtii päävalikon sisällöstä
-     * ja käynnistää pelin taustamusiikin.
-     * 
+     * Luokka huolehtii päävalikon sisällöstä ja käynnistää pelin
+     * taustamusiikin.
+     *
      * @param stage Näytettävä stage
      */
     public GameMenu(Stage stage) {
@@ -48,16 +48,18 @@ public class GameMenu {
     }
 
     /**
-     * Areenan nimi joka on valittuna.
-     * Käytetään peliä käynnistettäessä hakemaan oikea areenan nimi.
+     * Areenan nimi joka on valittuna. Käytetään peliä käynnistettäessä hakemaan
+     * oikea areenan nimi.
+     *
      * @return Palauttaa areenan joka on valittuna arenaNumberilla.
      */
     public String getChosenArena() {
         return arenas.get(arenaNumber);
     }
-    
+
     /**
      * Rakentaa päävalikon näytettäväksi
+     *
      * @return Näytettävä scene
      */
     public Scene getScene() {
@@ -70,16 +72,16 @@ public class GameMenu {
         window.setCenter(centerBox);
 
         Scene menuScene = new Scene(window);
-        
+
         game = new Game(stage, menuScene);
-        
+
         addKeyHandler(menuScene);
 
         return menuScene;
     }
 
     private List<String> readArenaNames() {
-        
+
         List<String> arenaList = new ArrayList<>();
         for (File file : new File("arenas/").listFiles()) {
             arenaList.add(file.getName());
@@ -97,7 +99,7 @@ public class GameMenu {
                 + "Attack:   Q                 Right Shift";
         Label infoLabel = createLabel(infoString, 16);
         Label musicInfoLabel = createLabel("Press 'M' to toggle music", 16);
-        musicInfoLabel.setPadding(new Insets(5,5,5,5));
+        musicInfoLabel.setPadding(new Insets(5, 5, 5, 5));
 
         Label versionLabel = createLabel("Version " + version, 16);
         HBox versionBox = new HBox();
@@ -141,7 +143,7 @@ public class GameMenu {
             } else if (event.getCode() == KeyCode.ENTER) {
                 stage.setScene(game.getScene());
                 game.initGame(getChosenArena());
-            } else if(event.getCode() == KeyCode.M) {
+            } else if (event.getCode() == KeyCode.M) {
                 musicHandler.toggleMusic();
             }
         });

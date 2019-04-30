@@ -48,22 +48,36 @@ public class LogicTest {
     }
 
     @Test
+    public void playerIsRunningWorks() {
+        Player p1 = logic.getPlayers().get(0);
+        p1.addVelocity(40, 0);
+        assertTrue(p1.isRunning());
+    }
+    
+    @Test
+    public void playerIsUsingJetpack() {
+        Player p1 = logic.getPlayers().get(0);
+        p1.setUsingJetpack(true);
+        assertTrue(p1.isUsingJetpack());
+    }
+
+    @Test
     public void playerIsNotAffectedByGravityWhenOnGround() {
         logic.updateAll(0.1);
         assertEquals(0, logic.getPlayers().get(0).getVelocityY(), 0);
     }
-    
+
     @Test
     public void playerCanNotMoveToWalls() {
         Player player = logic.getPlayers().get(0);
         player.setX(30);
         logic.updateAll(0);
         assertEquals(33, player.getX());
-        int arenaWidth = logic.getArena().getWidth()*32;
+        int arenaWidth = logic.getArena().getWidth() * 32;
         player.setX(arenaWidth - 64 + 6);
         logic.updateAll(0);
         assertEquals(arenaWidth - 64 - 1, player.getX());
-        int arenaHeight = logic.getArena().getHeight()*32;
+        int arenaHeight = logic.getArena().getHeight() * 32;
         player.setY(arenaHeight - 32 + 5);
         logic.updateAll(0);
         assertEquals(arenaHeight - 32 - 1, player.getY());
@@ -101,6 +115,7 @@ public class LogicTest {
     @Test
     public void playerAttackCreatesAmmunition() {
         Player p1 = logic.getPlayers().get(0);
+        logic.updateAll(60);
         logic.attack(p1);
         assertEquals(1, logic.getAmmunition().size());
     }
@@ -117,12 +132,13 @@ public class LogicTest {
     public void gameStatusCanBeGet() {
         assertFalse(logic.getGameFinished());
     }
-    
+
     @Test
     public void somethingHappensWhenPlayerIsHit() {
         Player p1 = logic.getPlayers().get(0);
         Player p2 = logic.getPlayers().get(1);
         Weapon p2w = p2.getWeapon();
+        logic.updateAll(60);
         logic.attack(p2);
         assertEquals(0, p2.getScore());
         assertTrue(p2w == p2.getWeapon());
@@ -133,7 +149,7 @@ public class LogicTest {
         assertFalse(p2w == p2.getWeapon());
         assertEquals(0, logic.getAmmunition().size());
     }
-    
+
     @Test
     public void ammoCanHitEachOther() {
         Player p1 = logic.getPlayers().get(0);
@@ -144,7 +160,7 @@ public class LogicTest {
         logic.updateAll(0.12);
         assertEquals(0, logic.getAmmunition().size());
     }
-    
+
     @Test
     public void gameEndsWhenEnoughScore() {
         for (int i = 0; i < 6; i++) {
@@ -156,9 +172,26 @@ public class LogicTest {
             p2.setX(150);
             p2.setY(735);
             p2.setFacing(0);
+            logic.updateAll(60);
             logic.attack(p2);
             logic.updateAll(0.01);
         }
         assertTrue(logic.getGameFinished());
+    }
+
+    @Test
+    public void smokeAliveTimeGoesDown() {
+        logic.getSmoke().add(new Smoke(50, 50));
+        logic.updateAll(0.05);
+        assertEquals(0.05, logic.getSmoke().get(0).getAliveTime(), 0);
+    }
+
+    @Test
+    public void smokeIsRemovedWhenNotAlive() {
+        logic.getSmoke().add(new Smoke(50, 50));
+        logic.updateAll(0.11);
+        logic.updateAll(0);
+        assertEquals(0, logic.getSmoke().size());
+
     }
 }

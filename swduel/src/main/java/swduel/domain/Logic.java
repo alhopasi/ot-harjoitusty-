@@ -69,7 +69,7 @@ public class Logic {
     }
 
     /**
-     * Metodi päivittää pelaajien sijaintia, hidastaa liikettä, tarkastaa onko
+     * Metodi päivittää pelaajien ja savun sijaintia, hidastaa liikettä, tarkastaa onko
      * pelaajat seinän sisällä, tarkastaa painovoiman vaikutukset sekä päivittää
      * ammusten sijaintia.
      *
@@ -293,6 +293,7 @@ public class Logic {
             newWeapon = new Lightsaber();
         }
         player.setWeapon(newWeapon);
+        player.getWeapon().setCooldown(50);
     }
 
     private void generateAudio(AudioHandler audioHandler) {
