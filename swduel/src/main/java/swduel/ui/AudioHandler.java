@@ -44,7 +44,7 @@ public class AudioHandler {
             playMP3 = new Player(fis);
             isPlayingMusic = true;
 
-            new Thread() {
+            Thread thread = new Thread() {
                 public void run() {
                     try {
                         playMP3.play();
@@ -55,7 +55,9 @@ public class AudioHandler {
                         System.out.println(e);
                     }
                 }
-            }.start();
+            };
+            thread.setDaemon(true);
+            thread.start();
 
         } catch (Exception exc) {
             exc.printStackTrace();
