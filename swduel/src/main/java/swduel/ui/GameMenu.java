@@ -95,8 +95,8 @@ public class GameMenu {
                 + "eliminate your opponent until you win.\n"
                 + "          Player 1 keys:    Player 2 keys:\n"
                 + "Movement: A, D              Left Arrow, Right Arrow\n"
-                + "Jetpack:  TAB               Right Ctrl\n"
-                + "Attack:   Q                 Right Shift";
+                + "Jetpack:  W                 Up Arrow\n"
+                + "Attack:   TAB               Right CTRL";
         Label infoLabel = createLabel(infoString, 16);
         Label musicInfoLabel = createLabel("Press 'M' to toggle music", 16);
         musicInfoLabel.setPadding(new Insets(5, 5, 5, 5));

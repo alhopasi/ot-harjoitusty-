@@ -38,4 +38,5 @@
 | 26.5. | 3      | JavaDocin lisäys ja dokumentaation päivitystä |
 |       | 2      | animaatiot juoksemiselle |
 | 28.5. | 1      | lentorepulle savu |
-| yht.  | 66     |
+| 1.6.  | 2      | lisättiin tuki gamepadeille. Hyvää vappua! |
+| yht.  | 68     |

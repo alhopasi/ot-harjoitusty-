@@ -11,7 +11,7 @@ public class SwduelUi extends Application {
     private GameMenu gameMenu;
     /**
      * Metodi käynnistää pelin ja asettaa ikkunan leveys- ja pituusarvot
-     * 
+     *
      * @param stage Näytettävä stage
      */
     @Override
