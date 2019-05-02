@@ -9,8 +9,9 @@ Se pelaaja, joka saa osuman ensin kaikilla aseilla toiseen pelaajaan, voittaa.
 ### Päävalikko
 Päävalikossa valitaan areena jolla taistellaan.
 
-- Nuolinäppäimet oikealle ja vasemmalle valitsevat pelattavan areenan.
-- Enter käynnistää pelin.
+- Nuolinäppäimet oikealle ja vasemmalle valitsevat pelattavan areenan
+- Enter käynnistää pelin
+- 'M' kytkee musiikin päälle/pois
 
 ### Pelinäkymä
 
@@ -25,3 +26,8 @@ Päävalikossa valitaan areena jolla taistellaan.
 - NUOLINÄPPÄIN OIKEALLE: liike oikealle
 - CTRL: lennä rakettirepulla
 - SHIFT: ammu
+
+**Gamepad**
+- Napit: ammu
+- Tatit/ristikko-ohjain sivulle: liiku oikealle/vasemmalle
+- Tatit/ristikko-ohjain ylös, r1,r2,l1,l2: lennä rakettirepulla
