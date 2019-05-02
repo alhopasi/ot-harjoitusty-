@@ -14,6 +14,12 @@ Sovellus on peli, jossa kaksi pelaajaa taistelee toisiaan vastaan. Pelihahmoilla
 
 [arkkitehtuurikuvaus](swduel/dokumentaatio/arkkitehtuurikuvaus.md)
 
+[testausdokumentti](swduel/dokumentaatio/testaus.md)
+
+## Releaset
+
+[Viikon 7 release](https://github.com/alhopasi/ot-harjoitustyo/releases/tag/viikko7)
+
 ## Komentorivikomennot
 
 Sovelluksen käynnistämiseen tarvitaan juurihakemistoon kansiot `arenas`,`images` sekä `sounds`, joista löytyy tarvittavat tiedostot (ks. github tai release).
@@ -21,7 +27,7 @@ Sovelluksen käynnistämiseen tarvitaan juurihakemistoon kansiot `arenas`,`image
 Sovellus käynnistyy komennolla:
 `java -jar swduel.jar`
 
-tai lähdekoodia käyttäen:
+tai mavenilla lähdekoodia käyttäen:
 `mvn compile exec:java -Dexec.mainClass=swduel.ui.SwduelUi`
 
 Checkstyle raportin komento:
